@@ -1,0 +1,83 @@
+.leftPanel {
+  width: 425px;
+  position: absolute;
+  left: 200px;
+  top: 77px;
+  bottom: 20px;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap {
+  flex: none;
+  width: 425px;
+  height: 38px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: row;
+  pointer-events: all;
+}
+
+.input {
+  flex: auto;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+}
+
+.dirselector {
+  flex: auto;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+}
+
+.dirbtnwrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: 40px;
+  background: white;
+}
+
+.dirbtnstub {
+  flex: none;
+  height: 26px;
+  width: 1px;
+  background: #eee;
+  border: none;
+  box-sizing: border-box;
+}
+
+.dirbtn {
+  flex: auto;
+  color: #3385ff;
+  border: none;
+  border-radius: 0;
+  height: 100%;
+  width: 40px;
+  font-size: 24px;
+}
+
+.dirclosebtn {
+  flex: auto;
+  color: #999999;
+  border: none;
+  border-radius: 0;
+  height: 100%;
+  width: 40px;
+  font-size: 24px;
+}
+
+.searchbtn {
+  flex: none;
+  color: white;
+  border: none;
+  border-radius: 0 2px 2px 0;
+  height: 100%;
+  width: 58px;
+  font-size: 20px;
+}

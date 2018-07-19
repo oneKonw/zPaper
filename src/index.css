@@ -1,0 +1,25 @@
+
+html, body, :global(#root) {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+:global(.menu) {
+  background-color: #001529;
+  color: #ffffff;
+  border-bottom: 0px;
+  font-size: 17px;
+  margin-right: 36px;
+}
+:global(.menu) :global(.ant-menu-item.ant-menu-item-selected) {
+  color: #15e3e1;
+  border-bottom: 3px solid #15e3e1;
+}
+:global(.menu) :global(.ant-menu-item) {
+  letter-spacing: 1px;
+}
+:global(.menu) :global(.ant-menu-item:hover) {
+  color: #15e3e1;
+  border-bottom: 3px solid #15e3e1;
+}

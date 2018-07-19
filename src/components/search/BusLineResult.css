@@ -1,0 +1,86 @@
+.wrap {
+  flex: 1 0 auto;
+  margin-top: 4px;
+  width: 368px;
+  background: white;
+  pointer-events: all;
+}
+
+.headerWrap {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+}
+
+.lineStationIcon {
+  display: inline-block;
+  background-image: url(../../assets/icons.png);
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin-right: 5px;
+}
+
+.lineSubject {
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+}
+
+.lineDesc {
+  height: 22px;
+  line-height: 22px;
+  color: #999;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lineDetailWrap {
+  display: flex;
+  flex-direction: row;
+  padding: 3px 0;
+}
+
+.lineDetailIcon {
+  flex: none;
+  width: 40px;
+  text-align: center;
+}
+
+.startEndIcon {
+  display: inline-block;
+  width: 12px;
+  height: 11px;
+  border-radius: 50%;
+  border-width: 2px;
+  border-style: solid;
+  margin-left: 3px;
+}
+
+.segIcon {
+  display: inline-block;
+  background-image: url(../../assets/icons.png);
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+}
+
+.lineDetailContent {
+  flex: auto;
+}
+
+.lineDetailSegment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: white;
+  cursor: pointer;
+}
+
+.lineDetailSegment:hover {
+  background-color: #ebf1fb;
+}
