@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import domConstruct from 'dojo/dom-construct';
 
-import esriConfig from 'esri/config';
+// import esriConfig from 'esri/config';
 // import Basemap from 'esri/Basemap';
 // import TileLayer from 'esri/layers/TileLayer';
 import MapView from 'esri/views/MapView';
@@ -13,14 +13,6 @@ import Sceneview from 'esri/views/SceneView';
 
 // 组件
 import BasemapGallery from 'esri/widgets/BasemapGallery';
-// import Expand from '../../../components/widgets/Expand';
-// import LayerList from 'esri/widgets/LayerList';
-// import Home from '../../../components/widgets/Home';
-import DirectLineMeasurement3D from 'esri/widgets/DirectLineMeasurement3D';
-import AreaMeasurement3D from 'esri/widgets/AreaMeasurement3D';
-import MeasureUtil from '../../../utils/measure';
-import DrawSimple from '../../../utils/drawpoint';
-import MapCorrect from '../../../utils/mapcorrection';
 import Zoom from '../../../components/widgets/Zoom';
 import NavigationToggle from '../../../components/widgets/NavigationToggle';
 // import Getpoints from '../../../components/widgets/Getpoints';
@@ -32,36 +24,21 @@ import {
   SWITCH_MAP,
   VIEW_MODE_2D,
   VIEW_MODE_3D,
-  ACTION_MEASURE_LINE_3D,
-  ACTION_MEASURE_AREA_3D,
-  ACTION_MEASURE_2D_AREA,
-  ACTION_MEASURE_2D_LINE,
-  ACTION_DRAW_POINT_2D,
-  ACTION_DRAW_LINE_2D,
-  ACTION_DRAW_FLAT_2D,
   ACTION_ADDBOOKMARK_2D,
   ACTION_GOTOBOOKMARK_2D,
   ACTION_DELETBOOKMARK_2D,
   ACTION_DELETTHISBOOKMARK_2D,
   ACTION_EDITBOOKMARK_2D,
   ACTION_MAP_2D_CORRECT,
-  ACTION_ADDMAPCORRECT_2D,
 } from '../../../constants/action-types';
-import {
-  PIN_START,
-  PIN_END,
-  MAP_ACTION_DRAWLINE,
-  MAP_ACTION_CLEAR,
-  MAP_ACTION_HIGHLIGHT,
-} from '../../../constants/search';
-import BusLineUtil from '../../../utils/arcgis/busline';
 import env from '../../../utils/env';
-
+// 新建ags对象
 const ags = {};
 
-function prepare() {
-  esriConfig.request.proxyUrl = env.getProxyUrl();
-}
+// function prepare() {
+//   // 获取代理服务器地址
+//   esriConfig.request.proxyUrl = env.getProxyUrl();
+// }
 
 function createMap(opts = {}) {
   // Detect if 'createLogger' was passed directly to 'applyMiddleware'.
@@ -72,6 +49,7 @@ function createMap(opts = {}) {
   return store => next => action => {
     switch (action.type) {
       case INIT_MAP: {
+        // 将变量container赋值为获取到的div容器
         const { payload } = action;
         const { container, viewMode } = payload;
 
@@ -85,19 +63,25 @@ function createMap(opts = {}) {
         }
 
         // Otherwise, create a new container element and a new scene view.
+        // 新建对象属性container，赋值为一个div
         ags.container = document.createElement('div');
+        // 将存放ags的div添加到原本获取到的DOM节点上
         container.appendChild(ags.container);
 
-        prepare();
+        // 获取代理地址
+        // prepare();
 
+        // 判断view的mode，决定初始化2d地图或3d场景
         if (viewMode === VIEW_MODE_2D) {
           initMapView();
           // Initialize map
           // initializeMap(basemap);
         } else if (viewMode === VIEW_MODE_3D) {
-          initSceneView();
+          // 初始化三维场景
+          initMapView();
         }
         // create buttons
+        // 创建地图自带的按钮
         createToolButtons();
         // getpoints();
         // When initialized...
@@ -105,6 +89,8 @@ function createMap(opts = {}) {
           // Update the environment settings (either from the state or from the scene)
         });
       }
+
+      // 切换地图模式
       case SWITCH_MAP: {
         // const basemap = env.getDefaultBasemap3D();
         const { payload } = action;
@@ -125,47 +111,8 @@ function createMap(opts = {}) {
         }
         break;
       }
-      case ACTION_MEASURE_LINE_3D: {
-        let directLineMeasurement3D = new DirectLineMeasurement3D();
-        directLineMeasurement3D.view = ags.view;
-        directLineMeasurement3D.view.on('double-click', () => {
-          directLineMeasurement3D.clearMeasurement();
-          directLineMeasurement3D = null;
-        });
-        break;
-      }
-      case ACTION_MEASURE_AREA_3D: {
-        const areaMeasurement3D = new AreaMeasurement3D();
-        areaMeasurement3D.view = ags.view;
-        break;
-      }
-      case ACTION_MEASURE_2D_LINE: {
-        MeasureUtil.mapView = ags.view;
-        MeasureUtil.active('line');
-        break;
-      }
-      case ACTION_MEASURE_2D_AREA: {
-        MeasureUtil.mapView = ags.view;
-        MeasureUtil.active('area');
-        // if (!measureline) measureline = new MeasureUtil(ags.view);
-        // measureline.active('area');
-        break;
-      }
-      case ACTION_DRAW_POINT_2D: {
-        DrawSimple.mapTwoView = ags.view;
-        DrawSimple.active('point');
-        break;
-      }
-      case ACTION_DRAW_LINE_2D: {
-        DrawSimple.mapTwoView = ags.view;
-        DrawSimple.active('route');
-        break;
-      }
-      case ACTION_DRAW_FLAT_2D: {
-        DrawSimple.mapTwoView = ags.view;
-        DrawSimple.active('flat');
-        break;
-      }
+
+      // 地图纠错
       case ACTION_MAP_2D_CORRECT: {
         console.log('地图纠错');
         // MapCorrect.mapTwoView = ags.view;
@@ -184,11 +131,9 @@ function createMap(opts = {}) {
         }
         break;
       }
-      case ACTION_ADDMAPCORRECT_2D: {
-        MapCorrect.mapTwoView = ags.view;
-        MapCorrect.active('point');
-        break;
-      }
+
+
+      // 地图书签
       case ACTION_ADDBOOKMARK_2D: {
         if (ags.view) {
           const extent = ags.view.extent;
@@ -220,6 +165,8 @@ function createMap(opts = {}) {
         }
         break;
       }
+
+      // 删除书签
       case ACTION_DELETBOOKMARK_2D: {
         if (ags.view) {
           store.dispatch({
@@ -229,6 +176,8 @@ function createMap(opts = {}) {
         }
         break;
       }
+
+      // 删除当前书签
       case ACTION_DELETTHISBOOKMARK_2D: {
         if (ags.view) {
           const bookname = action.payload;
@@ -246,6 +195,8 @@ function createMap(opts = {}) {
         }
         break;
       }
+
+      // 编辑书签
       case ACTION_EDITBOOKMARK_2D: {
         if (ags.view) {
           const oldname = action.payload.oldname;
@@ -269,53 +220,6 @@ function createMap(opts = {}) {
         }
         break;
       }
-      case PIN_START: {
-        const { payload } = action;
-        const { lonlat } = payload;
-        const coordArr = lonlat.split(' ');
-        if (ags.view) {
-          ags.view.goTo({
-            center: [+coordArr[0], +coordArr[1]],
-            zoom: 17,
-          });
-          BusLineUtil.addStartLocation(ags.view, +coordArr[0], +coordArr[1]);
-        }
-
-        break;
-      }
-      case PIN_END: {
-        const { payload } = action;
-        const { lonlat } = payload;
-        const coordArr = lonlat.split(' ');
-        if (ags.view) {
-          ags.view.goTo({
-            center: [+coordArr[0], +coordArr[1]],
-            zoom: 17,
-          });
-          BusLineUtil.addEndLocation(ags.view, +coordArr[0], +coordArr[1]);
-        }
-        break;
-      }
-      case MAP_ACTION_DRAWLINE: {
-        const { payload } = action;
-        const { segments } = payload;
-        BusLineUtil.drawPlanLine(ags.view, segments);
-
-        break;
-      }
-      case MAP_ACTION_CLEAR: {
-        if (ags.view) {
-          BusLineUtil.clear(ags.view);
-        }
-        break;
-      }
-      case MAP_ACTION_HIGHLIGHT: {
-        const { payload } = action;
-        if (ags.view) {
-          BusLineUtil.highlightSegment(ags.view, payload);
-        }
-        break;
-      }
       default: {
         next(action);
         break;
@@ -326,6 +230,7 @@ function createMap(opts = {}) {
   };
 }
 
+// 初始二维地图
 function initMapView() {
   const webmap = new WebMap({
     portalItem: {
@@ -342,6 +247,7 @@ function initMapView() {
   });
 }
 
+// 初始化三维场景
 function initSceneView() {
   const scene = new WebScene({
     portalItem: {
@@ -352,33 +258,23 @@ function initSceneView() {
   ags.view = new Sceneview({
     container: ags.container,
     map: scene,
+    environment: {
+      atmosphere: {
+        quality: 'high',
+      },
+      lighting: {
+        date: new Date(),
+        directShadowsEnabled: true,
+        cameraTrackingEnabled: false,
+      },
+    },
     ui: {
       components: [],
     },
   });
 }
 
-// function initializeMap(basemap) {
-//   const map = new EsriMap({ basemap: 'topo' });
-//   if (basemap) {
-//     if (typeof basemap === 'string') {
-//       map.basemap = basemap;
-//     } else if (
-//       typeof basemap === 'object' &&
-//       Object.hasOwnProperty.call(basemap, 'url')
-//     ) {
-//       map.basemap = new Basemap({
-//         id: 'basemap1',
-//         title: '底图',
-//         baseLayers: [new TileLayer({ url: basemap.url })],
-//       });
-//     }
-//     ags.view.map = map;
-//     ags.view.ui.components = [];
-//   }
-// }
-
-
+// 地图工具
 function createToolButtons() {
   // Home
   // const homeDiv = domConstruct.create('div');
@@ -400,28 +296,6 @@ function createToolButtons() {
     position: 'bottom-right',
   });
   ReactDOM.render(<Compass view={ags.view} />, compassDiv);
-
-  // LayerList
-  // const expandDiv = domConstruct.create('div');
-  // expandDiv.style.position = 'absolute';
-  // expandDiv.style.top = '50px';
-  // expandDiv.style.right = '-8px';
-  // const layerList = new LayerList({
-  //   container: domConstruct.create('div'),
-  //   view: ags.view,
-  // });
-  // ags.view.ui.add(expandDiv, {
-  //   position: 'top-right',
-  //   index: 0,
-  // });
-  // ReactDOM.render(
-  //   <Expand
-  //     view={ags.view}
-  //     content={layerList.domNode}
-  //     expandIconClass="esri-icon-layers"
-  //   />,
-  //   expandDiv,
-  // );
 
   // BasemapGallery
   const basemapGalleryDiv = domConstruct.create('div');
@@ -462,4 +336,4 @@ function create3DToolButtons() {
   ReactDOM.render(<NavigationToggle view={ags.view} />, naviDiv);
 }
 
-export { createMap };
+export { createMap, ags };

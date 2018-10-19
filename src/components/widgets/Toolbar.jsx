@@ -26,8 +26,9 @@ class Toolbar extends React.Component {
     this.state = {};
     this.measureLine = this.measureLine.bind(this);
     this.visblechangebook = this.visblechangebook.bind(this);
+    this.visblechangeShadow = this.visblechangeShadow.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() { }
   measureLine({ key }) {
     switch (key) {
       case 'measure3DLine':
@@ -76,6 +77,20 @@ class Toolbar extends React.Component {
     }
   }
 
+  visblechangeShadow(e) {
+    e.stopPropagation();
+    if (this.props.agsmap.shadowflag) {
+      this.props.dispatch({
+        type: 'agsmap/shadowChangeState',
+        payload: false,
+      });
+    } else {
+      this.props.dispatch({
+        type: 'agsmap/shadowChangeState',
+        payload: true,
+      });
+    }
+  }
   renderMenuItems() {
     const items = [];
     if (this.props.agsmap.mode === VIEW_MODE_3D) {
@@ -90,6 +105,13 @@ class Toolbar extends React.Component {
         <Menu.Item key="measure3DArea" style={{ textAlign: 'center' }}>
           <Icon type="ant-design" />
           <span>&nbsp;测面</span>
+        </Menu.Item>,
+      );
+
+      items.push(
+        <Menu.Item key="shadow" style={{ textAlign: 'center' }}>
+          <Icon type="ant-design" />
+          <span>&nbsp;阴影</span>
         </Menu.Item>,
       );
     } else if (this.props.agsmap.mode === VIEW_MODE_2D) {
@@ -156,6 +178,9 @@ class Toolbar extends React.Component {
             }}
           >
             <Icon type="switcher" />分屏对比
+          </Button>
+          <Button onClick={this.visblechangeShadow} className={styles.btnStyle}>
+            <Icon type="book" />阴影
           </Button>
         </ButtonGroup>
       </div>

@@ -1,0 +1,9 @@
+.cardGroup{
+  height: 800px;
+  width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}

@@ -1,0 +1,21 @@
+.header{
+  background-color: #001529;
+  height: 50px;
+  line-height: 50px;
+}
+.projectname {
+  display: flex;
+  align-items: center;
+}
+.userlogo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.title {
+  display: block;
+  font-size: 20px;
+  color: white;
+  padding-left: 10px;
+  letter-spacing: 3px;
+}

@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "cross-env PORT=8013 HOST=lbs.geoplat.test roadhog server",
+    "start": "roadhog server",
     "build": "roadhog build",
     "lint": "eslint --ext .js src test"
   },

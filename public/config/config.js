@@ -1,6 +1,6 @@
 (function(window) {
   var config = {
-    portal: 'http://nanping.arcgisonline.cn/arcgis/',
+    portal: 'https://oneknow.maps.arcgis.com/',
 
     proxy: 'http://nanping.arcgisonline.cn/Java/proxy.jsp',
 
@@ -14,9 +14,9 @@
 
     portalItemId: 'b2609c762c0340d0bfcd619fe4eb026d',
 
-    webMapId: 'dfded70cf4d743c8892c860be35278b1',
+    webMapId: '4802bae21a5241e7861c8e370be21302',
 
-    webSceneId: 'abb27cba2fe0499ba650013df49ae1be',
+    webSceneId: '3c5f2a43696744418d33b77e78d869b2',
 
     splitItemIdone: '2c3b36b9244848b9a33b13b21ef5745f',
 
