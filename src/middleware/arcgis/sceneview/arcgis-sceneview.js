@@ -78,11 +78,11 @@ function createMap(opts = {}) {
           // initializeMap(basemap);
         } else if (viewMode === VIEW_MODE_3D) {
           // 初始化三维场景
-          initMapView();
+          initSceneView();
         }
         // create buttons
         // 创建地图自带的按钮
-        createToolButtons();
+        // createToolButtons();
         // getpoints();
         // When initialized...
         return ags.view.when(() => {
@@ -92,6 +92,9 @@ function createMap(opts = {}) {
 
       // 切换地图模式
       case SWITCH_MAP: {
+        console.log('切换');
+        const viewPoint = ags.view.viewpoint.clone();
+        ags.view.container = null;
         // const basemap = env.getDefaultBasemap3D();
         const { payload } = action;
         if (payload === VIEW_MODE_2D) {
@@ -99,16 +102,17 @@ function createMap(opts = {}) {
           // initializeMap(basemap);
           // getpoints();
         } else if (payload === VIEW_MODE_3D) {
-          const showl = document.getElementById('showl');
-          showl.innerHTML = '';
+          // const showl = document.getElementById('showl');
+          // showl.innerHTML = '';
           initSceneView();
         }
+        ags.view.viewpoint = viewPoint;
         // create buttons
-        createToolButtons();
+        // createToolButtons();
         // create 3D buttons
-        if (payload === VIEW_MODE_3D) {
-          create3DToolButtons();
-        }
+        // if (payload === VIEW_MODE_3D) {
+        //   create3DToolButtons();
+        // }
         break;
       }
 

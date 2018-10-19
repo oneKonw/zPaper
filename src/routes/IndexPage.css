@@ -137,3 +137,15 @@
 .mapDiv {
   height: 800px;
 }
+
+.switch2DBtn {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.switch3DBtn {
+  position: absolute;
+  top: 10px;
+  left: 80px;
+}
