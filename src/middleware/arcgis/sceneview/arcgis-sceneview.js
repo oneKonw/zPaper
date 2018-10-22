@@ -24,6 +24,7 @@ import {
   SWITCH_MAP,
   VIEW_MODE_2D,
   VIEW_MODE_3D,
+  SWITCH_MODEL, SWITCH_MODEL_REAL, SWITCH_MODEL_WHITE, SWITCH_MODEL_CAO,
   ACTION_ADDBOOKMARK_2D,
   ACTION_GOTOBOOKMARK_2D,
   ACTION_DELETBOOKMARK_2D,
@@ -82,10 +83,11 @@ function createMap(opts = {}) {
         }
         // create buttons
         // 创建地图自带的按钮
-        // createToolButtons();
+        createToolButtons();
         // getpoints();
         // When initialized...
         return ags.view.when(() => {
+          console.log('ags视图', ags);
           // Update the environment settings (either from the state or from the scene)
         });
       }
@@ -116,6 +118,42 @@ function createMap(opts = {}) {
         break;
       }
 
+      // 切换模型
+      case SWITCH_MODEL: {
+        let locationRenderer = null;
+        const { payload } = action;
+        console.log('切换模型', ags.view.map.layers.items.length);
+        for (let i = 0; i < ags.view.map.layers.items.length; i += 1) {
+          if (ags.view.map.layers.items[i].portalItem) {
+            if (ags.view.map.layers.items[i].portalItem.id === 'f4b4881270124343a4cc2f847f86f54c') {
+              // 获取图层后判定切换模型
+              if (payload === SWITCH_MODEL_WHITE) {
+                locationRenderer = {
+                  type: 'simple', // autocasts as new SimpleRenderer()
+                  symbol: {
+                    type: 'mesh-3d', // autocasts as new MeshSymbol3D()
+                    symbolLayers: [{
+                      type: 'fill', // autocasts as new FillSymbol3DLayer()
+                      material: {
+                        color: 'white',
+                        colorMixMode: 'replace',
+                      },
+                    }],
+                  },
+                };
+              } else if (payload === SWITCH_MODEL_REAL) {
+                console.log('真实渲染器', locationRenderer);
+                locationRenderer = null;
+              }
+              console.log('渲染器', locationRenderer);
+              console.log('图层', ags.view.map.layers.items[i]);
+              ags.view.map.layers.items[i].renderer = locationRenderer;
+            }
+          }
+        }
+        break;
+      }
+
       // 地图纠错
       case ACTION_MAP_2D_CORRECT: {
         console.log('地图纠错');
@@ -131,95 +169,6 @@ function createMap(opts = {}) {
           store.dispatch({
             type: 'agsmap/mapcorrectChangeState',
             payload: true,
-          });
-        }
-        break;
-      }
-
-
-      // 地图书签
-      case ACTION_ADDBOOKMARK_2D: {
-        if (ags.view) {
-          const extent = ags.view.extent;
-          // 保存
-
-          store.dispatch({
-            type: 'agsmap/updateBookmarks',
-            payload: [
-              ...store.getState().agsmap.bookmarks,
-              {
-                name: action.payload,
-                newextent: extent,
-              },
-            ],
-          });
-        }
-        break;
-      }
-
-      case ACTION_GOTOBOOKMARK_2D: {
-        if (ags.view) {
-          const bookname = action.payload;
-          const books = store.getState().agsmap.bookmarks;
-          books.forEach(element => {
-            if (element.name === bookname) {
-              ags.view.goTo(element.newextent.extent);
-            }
-          });
-        }
-        break;
-      }
-
-      // 删除书签
-      case ACTION_DELETBOOKMARK_2D: {
-        if (ags.view) {
-          store.dispatch({
-            type: 'agsmap/updateBookmarks',
-            payload: [],
-          });
-        }
-        break;
-      }
-
-      // 删除当前书签
-      case ACTION_DELETTHISBOOKMARK_2D: {
-        if (ags.view) {
-          const bookname = action.payload;
-          const books = store.getState().agsmap.bookmarks;
-          books.forEach(element => {
-            if (element.name === bookname) {
-              const index = books.indexOf(element);
-              books.splice(index, 1);
-            }
-          });
-          store.dispatch({
-            type: 'agsmap/updateBookmarks',
-            payload: books,
-          });
-        }
-        break;
-      }
-
-      // 编辑书签
-      case ACTION_EDITBOOKMARK_2D: {
-        if (ags.view) {
-          const oldname = action.payload.oldname;
-          const newname = action.payload.newname;
-          const books = store.getState().agsmap.bookmarks;
-          const extent = ags.view.extent;
-          const newelement = {
-            name: newname,
-            newextent: extent,
-          };
-          books.forEach(element => {
-            if (element.name === oldname) {
-              const index = books.indexOf(element);
-              books.splice(index, 1, newelement);
-            }
-          });
-          store.dispatch({
-            type: 'agsmap/updateBookmarks',
-            payload: books,
           });
         }
         break;
@@ -288,18 +237,40 @@ function createToolButtons() {
   // ReactDOM.render(<Home view={ags.view} />, homeDiv);
 
   // Zoom
-  const zoomDiv = domConstruct.create('div');
-  ags.view.ui.add(zoomDiv, {
-    position: 'bottom-right',
-  });
-  ReactDOM.render(<Zoom view={ags.view} />, zoomDiv);
+  // const zoomDiv = domConstruct.create('div');
+  // ags.view.ui.add(zoomDiv, {
+  //   position: 'bottom-right',
+  // });
+  // ReactDOM.render(<Zoom view={ags.view} />, zoomDiv);
 
-  // Compass
-  const compassDiv = domConstruct.create('div');
-  ags.view.ui.add(compassDiv, {
-    position: 'bottom-right',
-  });
-  ReactDOM.render(<Compass view={ags.view} />, compassDiv);
+  // // Compass
+  // const compassDiv = domConstruct.create('div');
+  // ags.view.ui.add(compassDiv, {
+  //   position: 'bottom-right',
+  // });
+  // ReactDOM.render(<Compass view={ags.view} />, compassDiv);
+
+  // LayerList
+  // const expandDiv = domConstruct.create('div');
+  // expandDiv.style.position = 'absolute';
+  // expandDiv.style.top = '50px';
+  // expandDiv.style.right = '-8px';
+  // const layerList = new LayerList({
+  //   container: domConstruct.create('div'),
+  //   view: ags.view,
+  // });
+  // ags.view.ui.add(expandDiv, {
+  //   position: 'top-right',
+  //   index: 0,
+  // });
+  // ReactDOM.render(
+  //   <Expand
+  //     view={ags.view}
+  //     content={layerList.domNode}
+  //     expandIconClass="esri-icon-layers"
+  //   />,
+  //   expandDiv,
+  // );
 
   // BasemapGallery
   const basemapGalleryDiv = domConstruct.create('div');
@@ -314,30 +285,30 @@ function createToolButtons() {
     position: 'bottom-right',
     index: 0,
   });
-  ags.view.when(() => {
-    setTimeout(() => {
-      // console.log(basemapGalleryDiv.childNodes[0].childNodes);
-      for (const liitems of basemapGalleryDiv.childNodes[0].childNodes) {
-        // console.log(liitems.title);
-        liitems.style.display = 'none';
-        if (liitems.title === '天地图全球影像图') {
-          liitems.style.display = 'flex';
-        }
-        if (liitems.title === '天地图全球矢量图') {
-          liitems.style.display = 'flex';
-        }
-      }
-    }, 3000);
-  });
+  // ags.view.when(() => {
+  //   setTimeout(() => {
+  //     // console.log(basemapGalleryDiv.childNodes[0].childNodes);
+  //     for (const liitems of basemapGalleryDiv.childNodes[0].childNodes) {
+  //       // console.log(liitems.title);
+  //       liitems.style.display = 'none';
+  //       if (liitems.title === '天地图全球影像图') {
+  //         liitems.style.display = 'flex';
+  //       }
+  //       if (liitems.title === '天地图全球矢量图') {
+  //         liitems.style.display = 'flex';
+  //       }
+  //     }
+  //   }, 3000);
+  // });
 }
 
-function create3DToolButtons() {
-  // NavigationToggle
-  const naviDiv = domConstruct.create('div');
-  ags.view.ui.add(naviDiv, {
-    position: 'top-left',
-  });
-  ReactDOM.render(<NavigationToggle view={ags.view} />, naviDiv);
-}
+// function create3DToolButtons() {
+//   // NavigationToggle
+//   const naviDiv = domConstruct.create('div');
+//   ags.view.ui.add(naviDiv, {
+//     position: 'top-left',
+//   });
+//   ReactDOM.render(<NavigationToggle view={ags.view} />, naviDiv);
+// }
 
 export { createMap, ags };

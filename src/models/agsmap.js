@@ -1,6 +1,8 @@
 import {
   INIT_MAP,
   VIEW_MODE_3D, SWITCH_MAP,
+  SWITCH_MODEL,
+  SWITCH_MODEL_REAL, SWITCH_MODEL_WHITE, SWITCH_MODEL_CAO,
   ACTION_ADDBOOKMARK_2D,
   ACTION_GOTOBOOKMARK_2D,
   ACTION_DELETBOOKMARK_2D,
@@ -12,6 +14,7 @@ export default {
   namespace: 'agsmap',
 
   state: {
+    model: SWITCH_MODEL_REAL,
     mode: VIEW_MODE_3D,
     callflags: false,
     bookflags: false,
@@ -47,6 +50,11 @@ export default {
       yield put({ type: 'transMode3dState', payload });
       yield put({ type: SWITCH_MAP, payload });
     },
+    *transModel({ payload }, { put }) {
+      yield put({ type: 'transModelRenderer', payload });
+      yield put({ type: SWITCH_MODEL, payload });
+    },
+    // 分割---------------------------------
     *addBookmark({ payload }, { put }) {
       yield put({ type: ACTION_ADDBOOKMARK_2D, payload });
     },
@@ -74,6 +82,10 @@ export default {
     transMode2dState(state, action) {
       return { ...state, mode: action.payload };
     },
+    transModelRenderer(state, action) {
+      return { ...state, model: action.payload };
+    },
+    // 分割-----------------
     bookmarkChangeState(state, action) {
       return { ...state, bookflags: action.payload };
     },

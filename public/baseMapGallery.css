@@ -7,7 +7,7 @@
 }
 
 /* .esri-view-width-greater-than-large .esri-ui-corner .esri-basemap-gallery.esri-component */
-
+/* div的样式 */
 .map-basemaps.esri-basemap-gallery,
 .esri-view-width-greater-than-large .map-basemaps .esri-basemap-gallery,
 .esri-view-width-greater-than-large
@@ -23,7 +23,7 @@
 }
 
 /* .esri-view-width-greater-than-large .esri-ui-corner .esri-basemap-gallery.esri-component .esri-basemap-gallery__item-container */
-
+/* ul的样式 */
 .map-basemaps .esri-basemap-gallery__item-container,
 .esri-view-width-greater-than-large
   .esri-ui-corner
@@ -51,7 +51,7 @@
 }
 
 /* .esri-view-width-greater-than-large .esri-ui-corner .esri-basemap-gallery.esri-component .esri-basemap-gallery__item */
-
+/* li样式 */
 .map-basemaps .esri-basemap-gallery__item,
 .esri-view-width-greater-than-large
   .esri-ui-corner

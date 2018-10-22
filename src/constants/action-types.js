@@ -13,6 +13,10 @@ export const SET_USER_WEBSCENES = 'SET_USER_WEBSCENES';
  */
 export const INIT_MAP = 'INIT_MAP';
 export const SWITCH_MAP = 'SWITCH_MAP';
+export const SWITCH_MODEL = 'SWITCH_MODEL';
+export const SWITCH_MODEL_REAL = 'SWITCH_MODEL_REAL';
+export const SWITCH_MODEL_WHITE = 'SWITCH_MODEL_WHITE';
+export const SWITCH_MODEL_CAO = 'SWITCH_MODEL_CAO';
 
 export const ACTION_MEASURE_LINE_3D = 'action-measure-line-3d';
 export const ACTION_MEASURE_AREA_3D = 'action-measure-area-3d';

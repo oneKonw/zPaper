@@ -9,9 +9,10 @@ import env from '../utils/env';
 import styles from './IndexPage.css';
 import {
   VIEW_MODE_3D, VIEW_MODE_2D,
+  SWITCH_MODEL, SWITCH_MODEL_REAL, SWITCH_MODEL_WHITE, SWITCH_MODEL_CAO,
 } from '../constants/action-types';
 
-// const { Header } = Layout;
+const ButtinGroup = Button.Group;
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -19,6 +20,8 @@ class IndexPage extends React.Component {
     this.viewDiv = null;
     this.btnSwitch2D = this.btnSwitch2D.bind(this);
     this.btnSwitch3D = this.btnSwitch3D.bind(this);
+    this.btnSwitchModelWhite = this.btnSwitchModelWhite.bind(this);
+    this.btnSwitchModelReal = this.btnSwitchModelReal.bind(this);
   }
 
   componentDidMount() {
@@ -51,17 +54,31 @@ class IndexPage extends React.Component {
     });
   }
 
+  btnSwitchModelWhite() {
+    this.props.dispatch({
+      type: 'agsmap/transModel',
+      payload: SWITCH_MODEL_WHITE,
+    });
+  }
+
+  btnSwitchModelReal() {
+    this.props.dispatch({
+      type: 'agsmap/transModel',
+      payload: SWITCH_MODEL_REAL,
+    });
+  }
+
   render() {
     return (
       <div className={styles.wrapper}>
         <Header />
         <TagFilter />
         <Row>
-          <Col span={14}>
+          <Col span={1}>
             <MapContent />
           </Col>
           <Col
-            span={10}
+            span={23}
             className={styles.mapDiv}
           >
             <div
@@ -70,14 +87,24 @@ class IndexPage extends React.Component {
               }}
               className={styles.viewDiv}
             />
-            <Button
-              onClick={this.btnSwitch2D}
-              className={styles.switch2DBtn}
-            >2D</Button>
-            <Button
-              onClick={this.btnSwitch3D}
-              className={styles.switch3DBtn}
-            >3D</Button>
+            <ButtinGroup
+              className={styles.btnSwitchMap}
+            >
+              <Button
+                onClick={this.btnSwitch2D}
+              >2D</Button>
+              <Button
+                onClick={this.btnSwitch3D}
+              >3D</Button>
+            </ButtinGroup>
+
+            <ButtinGroup
+              className={styles.btnSwitchModel}
+            >
+              <Button onClick={this.btnSwitchModelReal}>实景</Button>
+              <Button onClick={this.btnSwitchModelWhite} >白模</Button>
+              <Button>草模</Button>
+            </ButtinGroup>
           </Col>
         </Row>
 
