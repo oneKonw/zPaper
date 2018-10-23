@@ -74,11 +74,11 @@ class IndexPage extends React.Component {
         <Header />
         <TagFilter />
         <Row>
-          <Col span={1}>
+          <Col span={14}>
             <MapContent />
           </Col>
           <Col
-            span={23}
+            span={10}
             className={styles.mapDiv}
           >
             <div
