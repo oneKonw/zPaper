@@ -37,7 +37,7 @@
   /* Safari 和 Chrome */
   -o-transition: all 0.5s ease-in-out;
   /* Opera */
-  width: 160px;
+  width: 140px;
 }
 
 .map-basemaps .esri-basemap-gallery__item-container:hover,
@@ -56,7 +56,7 @@
   .esri-basemap-gallery__item {
   /*display: none;*/
   width: 70px !important;
-  margin: 8px 4px !important;
+  margin: 2px 0px !important;
   padding: 0 !important;
   border: 1px solid transparent !important;
   flex-flow: column nowrap;

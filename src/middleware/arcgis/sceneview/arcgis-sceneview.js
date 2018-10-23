@@ -108,55 +108,22 @@ function createMap(opts = {}) {
           initSceneView();
           // 获取并渲染建筑图层
           ags.view.when(() => {
-            const layer = getLayerByItem(ags.view, 'f4b4881270124343a4cc2f847f86f54c');
+            const layer = getLayerByItem(ags.view, env.getBuildLayerId());
             console.log('图层', layer);
             myModelRender(layer, action.payload.modelType);
           });
         }
         ags.view.viewpoint = viewPoint;
-        // create buttons
-        // createToolButtons();
-        // create 3D buttons
-        // if (payload === VIEW_MODE_3D) {
-        //   create3DToolButtons();
-        // }
         break;
       }
 
       // 切换模型
       // 参数：ags.view ，切换类型
       case SWITCH_MODEL: {
-        let locationRenderer = null;
         const { payload } = action;
-        console.log('切换模型', ags.view.map.layers.items.length);
-        for (let i = 0; i < ags.view.map.layers.items.length; i += 1) {
-          if (ags.view.map.layers.items[i].portalItem) {
-            if (ags.view.map.layers.items[i].portalItem.id === 'f4b4881270124343a4cc2f847f86f54c') {
-              // 获取图层后判定切换模型
-              if (payload === SWITCH_MODEL_WHITE) {
-                locationRenderer = {
-                  type: 'simple', // autocasts as new SimpleRenderer()
-                  symbol: {
-                    type: 'mesh-3d', // autocasts as new MeshSymbol3D()
-                    symbolLayers: [{
-                      type: 'fill', // autocasts as new FillSymbol3DLayer()
-                      material: {
-                        color: 'white',
-                        colorMixMode: 'replace',
-                      },
-                    }],
-                  },
-                };
-              } else if (payload === SWITCH_MODEL_REAL) {
-                console.log('真实渲染器', locationRenderer);
-                locationRenderer = null;
-              }
-              console.log('渲染器', locationRenderer);
-              console.log('图层', ags.view.map.layers.items[i]);
-              ags.view.map.layers.items[i].renderer = locationRenderer;
-            }
-          }
-        }
+        const layer = getLayerByItem(ags.view, env.getBuildLayerId());
+        console.log('图层', layer);
+        myModelRender(layer, payload);
         break;
       }
 

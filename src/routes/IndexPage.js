@@ -4,6 +4,7 @@ import { Avatar, Layout, Row, Col, Menu, Button } from 'antd';
 import Header from '../components/Header/Header';
 import TagFilter from '../components/ContentLayout/TagFilter';
 import MapContent from '../components/ContentLayout/MapContent';
+import ModelToolbar from '../../src/components/ModelToolbar';
 // import { Avatar, Layout, Row, Col, Menu } from 'antd';
 import env from '../utils/env';
 import styles from './IndexPage.css';
@@ -113,18 +114,7 @@ class IndexPage extends React.Component {
               >三维</Button>
               <Button>街景</Button>
             </ButtinGroup>
-            <ButtinGroup
-              className={styles.btnSwitchModel}
-              style={{
-                display: this.props.agsmap.btnSwitchMapFlags
-                  ? 'block'
-                  : 'none',
-              }}
-            >
-              <Button onClick={this.btnSwitchModelReal}>实景</Button>
-              <Button onClick={this.btnSwitchModelWhite} >白模</Button>
-              <Button>草模</Button>
-            </ButtinGroup>
+            <ModelToolbar />
           </Col>
         </Row>
 

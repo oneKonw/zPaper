@@ -21,6 +21,10 @@ export default {
   setParamAgs(paramAgs) {
     window.agsGlobal = paramAgs;
   },
+
+  getBuildLayerId() {
+    return window.appcfg.buildLayerId;
+  },
   // ——————————————————————————————————————
   getSplitItemIdone() {
     return window.appcfg.splitItemIdone;
