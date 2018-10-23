@@ -36,8 +36,6 @@ class IndexPage extends React.Component {
       payload: {
         // 容器
         container: this.viewDiv,
-        // 底图
-        basemap: env.getDefaultBasemap3D(),
         // 判断创建二维场景还是三维场景
         viewMode: this.props.agsmap.mode,
       },

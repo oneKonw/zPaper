@@ -59,21 +59,6 @@ export default {
       yield put({ type: SWITCH_MODEL, payload });
     },
     // 分割---------------------------------
-    *addBookmark({ payload }, { put }) {
-      yield put({ type: ACTION_ADDBOOKMARK_2D, payload });
-    },
-    *gotoBookmark({ payload }, { put }) {
-      yield put({ type: ACTION_GOTOBOOKMARK_2D, payload });
-    },
-    *deletBookmark({ payload }, { put }) {
-      yield put({ type: ACTION_DELETBOOKMARK_2D, payload });
-    },
-    *deletthisBookmark({ payload }, { put }) {
-      yield put({ type: ACTION_DELETTHISBOOKMARK_2D, payload });
-    },
-    *editBookmark({ payload }, { put }) {
-      yield put({ type: ACTION_EDITBOOKMARK_2D, payload });
-    },
   },
 
   reducers: {
@@ -93,29 +78,5 @@ export default {
       return { ...state, btnSwitchMapFlags: action.payload.btnSwitchMapFlags };
     },
     // 分割-----------------
-    bookmarkChangeState(state, action) {
-      return { ...state, bookflags: action.payload };
-    },
-    mapcorrectChangeState(state, action) {
-      return { ...state, correctflags: action.payload };
-    },
-    updateBookmarks(state, action) {
-      return { ...state, bookmarks: action.payload };
-    },
-    toggleSider(state, action) {
-      return { ...state, siderOpen: action.payload };
-    },
-    select(state, action) {
-      return { ...state, openMenu: action.payload };
-    },
-    chooseItems(state, action) {
-      return { ...state, chooseItemMenu: action.payload };
-    },
-    prolistChangeState(state, action) {
-      return { ...state, prolistflags: action.payload };
-    },
-    propictureChangeState(state, action) {
-      return { ...state, propicturechange: action.payload };
-    },
   },
 };
