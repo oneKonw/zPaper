@@ -16,8 +16,8 @@ import BasemapGallery from 'esri/widgets/BasemapGallery';
 import Zoom from '../../../components/widgets/Zoom';
 import NavigationToggle from '../../../components/widgets/NavigationToggle';
 // import Getpoints from '../../../components/widgets/Getpoints';
-
 import Compass from '../../../components/widgets/Compass';
+import { getLayerByItem, myModelRender } from '../../../utils/modelRender';
 
 import {
   INIT_MAP,
@@ -35,6 +35,8 @@ import {
 import env from '../../../utils/env';
 // 新建ags对象
 const ags = {};
+// 设置全局ags
+env.setParamAgs(ags);
 
 // function prepare() {
 //   // 获取代理服务器地址
@@ -86,7 +88,6 @@ function createMap(opts = {}) {
         // getpoints();
         // When initialized...
         return ags.view.when(() => {
-          console.log('ags视图', ags);
           // Update the environment settings (either from the state or from the scene)
         });
       }
@@ -98,17 +99,19 @@ function createMap(opts = {}) {
         ags.view.container = null;
         // const basemap = env.getDefaultBasemap3D();
         const payload = action.payload.viewMode;
-        console.log('payload', payload);
         if (payload === VIEW_MODE_2D) {
-          console.log('2d', action.payload);
           initMapView();
           createToolButtons();
           // initializeMap(basemap);
           // getpoints();
         } else if (payload === VIEW_MODE_3D) {
-          // const showl = document.getElementById('showl');
-          // showl.innerHTML = '';
           initSceneView();
+          // 获取并渲染建筑图层
+          ags.view.when(() => {
+            const layer = getLayerByItem(ags.view, 'f4b4881270124343a4cc2f847f86f54c');
+            console.log('图层', layer);
+            myModelRender(layer, action.payload.modelType);
+          });
         }
         ags.view.viewpoint = viewPoint;
         // create buttons

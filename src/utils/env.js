@@ -14,7 +14,14 @@ export default {
   getWebSceneId() {
     return window.appcfg.webSceneId;
   },
+  getParamAgs() {
+    return window.agsGlobal;
+  },
 
+  setParamAgs(paramAgs) {
+    window.agsGlobal = paramAgs;
+  },
+  // ——————————————————————————————————————
   getSplitItemIdone() {
     return window.appcfg.splitItemIdone;
   },

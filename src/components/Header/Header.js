@@ -40,8 +40,8 @@ class Sysheader extends Component {
   }
 }
 
-export default connect(({ users }) => {
+export default connect(({ agsmap }) => {
   return {
-    users,
+    agsmap,
   };
 })(Sysheader);

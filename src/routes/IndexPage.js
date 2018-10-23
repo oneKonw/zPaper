@@ -62,6 +62,8 @@ class IndexPage extends React.Component {
         payload: {
           viewMode: VIEW_MODE_3D,
           btnSwitchMapFlags: true,
+          // 识别模型状态
+          modelType: this.props.agsmap.modelType,
         },
       });
     }

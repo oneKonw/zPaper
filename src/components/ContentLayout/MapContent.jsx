@@ -22,8 +22,8 @@ class MapContent extends Component {
   }
 }
 
-export default connect(({ users }) => {
+export default connect(({ agsmap }) => {
   return {
-    users,
+    agsmap,
   };
 })(MapContent);

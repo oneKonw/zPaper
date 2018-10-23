@@ -14,7 +14,7 @@ export default {
   namespace: 'agsmap',
 
   state: {
-    model: SWITCH_MODEL_REAL,
+    modelType: SWITCH_MODEL_REAL,
     mode: VIEW_MODE_3D,
     btnSwitchMapFlags: true,
     // ——————————————————————————————
@@ -87,7 +87,7 @@ export default {
       return { ...state, mode: action.payload.viewMode };
     },
     transModelRenderer(state, action) {
-      return { ...state, model: action.payload };
+      return { ...state, modelType: action.payload };
     },
     btnSwitchMapChangeState(state, action) {
       return { ...state, btnSwitchMapFlags: action.payload.btnSwitchMapFlags };
