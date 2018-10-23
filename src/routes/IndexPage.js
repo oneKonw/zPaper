@@ -17,6 +17,9 @@ const ButtinGroup = Button.Group;
 class IndexPage extends React.Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   btnSwitchMapFlags: true,
+    // };
     this.viewDiv = null;
     this.btnSwitch2D = this.btnSwitch2D.bind(this);
     this.btnSwitch3D = this.btnSwitch3D.bind(this);
@@ -41,17 +44,27 @@ class IndexPage extends React.Component {
   }
 
   btnSwitch2D() {
-    this.props.dispatch({
-      type: 'agsmap/transMode2d',
-      payload: VIEW_MODE_2D,
-    });
+    if (this.props.agsmap.mode !== VIEW_MODE_2D) {
+      this.props.dispatch({
+        type: 'agsmap/transMode2d',
+        payload: {
+          viewMode: VIEW_MODE_2D,
+          btnSwitchMapFlags: false,
+        },
+      });
+    }
   }
 
   btnSwitch3D() {
-    this.props.dispatch({
-      type: 'agsmap/transMode3d',
-      payload: VIEW_MODE_3D,
-    });
+    if (this.props.agsmap.mode !== VIEW_MODE_3D) {
+      this.props.dispatch({
+        type: 'agsmap/transMode3d',
+        payload: {
+          viewMode: VIEW_MODE_3D,
+          btnSwitchMapFlags: true,
+        },
+      });
+    }
   }
 
   btnSwitchModelWhite() {
@@ -92,14 +105,19 @@ class IndexPage extends React.Component {
             >
               <Button
                 onClick={this.btnSwitch2D}
-              >2D</Button>
+              >二维</Button>
               <Button
                 onClick={this.btnSwitch3D}
-              >3D</Button>
+              >三维</Button>
+              <Button>街景</Button>
             </ButtinGroup>
-
             <ButtinGroup
               className={styles.btnSwitchModel}
+              style={{
+                display: this.props.agsmap.btnSwitchMapFlags
+                  ? 'block'
+                  : 'none',
+              }}
             >
               <Button onClick={this.btnSwitchModelReal}>实景</Button>
               <Button onClick={this.btnSwitchModelWhite} >白模</Button>

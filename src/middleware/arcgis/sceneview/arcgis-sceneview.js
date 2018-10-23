@@ -83,7 +83,6 @@ function createMap(opts = {}) {
         }
         // create buttons
         // 创建地图自带的按钮
-        createToolButtons();
         // getpoints();
         // When initialized...
         return ags.view.when(() => {
@@ -94,13 +93,16 @@ function createMap(opts = {}) {
 
       // 切换地图模式
       case SWITCH_MAP: {
-        console.log('切换');
+        console.log('切换', action.payload);
         const viewPoint = ags.view.viewpoint.clone();
         ags.view.container = null;
         // const basemap = env.getDefaultBasemap3D();
-        const { payload } = action;
+        const payload = action.payload.viewMode;
+        console.log('payload', payload);
         if (payload === VIEW_MODE_2D) {
+          console.log('2d', action.payload);
           initMapView();
+          createToolButtons();
           // initializeMap(basemap);
           // getpoints();
         } else if (payload === VIEW_MODE_3D) {
@@ -119,6 +121,7 @@ function createMap(opts = {}) {
       }
 
       // 切换模型
+      // 参数：ags.view ，切换类型
       case SWITCH_MODEL: {
         let locationRenderer = null;
         const { payload } = action;
@@ -275,8 +278,8 @@ function createToolButtons() {
   // BasemapGallery
   const basemapGalleryDiv = domConstruct.create('div');
   basemapGalleryDiv.style.position = 'absolute';
-  basemapGalleryDiv.style.bottom = '-20px';
-  basemapGalleryDiv.style.right = '-5px';
+  basemapGalleryDiv.style.bottom = '27px';
+  basemapGalleryDiv.style.right = '10px';
   const basemapGallery = new BasemapGallery({
     container: basemapGalleryDiv,
     view: ags.view,

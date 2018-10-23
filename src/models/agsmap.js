@@ -16,6 +16,8 @@ export default {
   state: {
     model: SWITCH_MODEL_REAL,
     mode: VIEW_MODE_3D,
+    btnSwitchMapFlags: true,
+    // ——————————————————————————————
     callflags: false,
     bookflags: false,
     correctflags: false,
@@ -45,10 +47,12 @@ export default {
     *transMode2d({ payload }, { put }) {
       yield put({ type: 'transMode2dState', payload });
       yield put({ type: SWITCH_MAP, payload });
+      yield put({ type: 'btnSwitchMapChangeState', payload });
     },
     *transMode3d({ payload }, { put }) {
       yield put({ type: 'transMode3dState', payload });
       yield put({ type: SWITCH_MAP, payload });
+      yield put({ type: 'btnSwitchMapChangeState', payload });
     },
     *transModel({ payload }, { put }) {
       yield put({ type: 'transModelRenderer', payload });
@@ -77,13 +81,16 @@ export default {
       return { ...state, ...action.payload };
     },
     transMode3dState(state, action) {
-      return { ...state, mode: action.payload };
+      return { ...state, mode: action.payload.viewMode };
     },
     transMode2dState(state, action) {
-      return { ...state, mode: action.payload };
+      return { ...state, mode: action.payload.viewMode };
     },
     transModelRenderer(state, action) {
       return { ...state, model: action.payload };
+    },
+    btnSwitchMapChangeState(state, action) {
+      return { ...state, btnSwitchMapFlags: action.payload.btnSwitchMapFlags };
     },
     // 分割-----------------
     bookmarkChangeState(state, action) {
