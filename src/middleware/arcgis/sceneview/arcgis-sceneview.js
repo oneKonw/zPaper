@@ -190,8 +190,9 @@ function initSceneView() {
         quality: 'high',
       },
       lighting: {
-        date: new Date(),
-        directShadowsEnabled: true,
+        // date: new Date(), // 当前时间
+        date: new Date('March 15, 2015 22:00:00'),
+        directShadowsEnabled: false,
         cameraTrackingEnabled: false,
       },
     },
