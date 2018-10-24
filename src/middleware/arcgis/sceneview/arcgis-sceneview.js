@@ -27,6 +27,7 @@ import {
   VIEW_MODE_3D,
   SWITCH_MODEL,
   ACTION_MAP_2D_CORRECT,
+  FULL_SCREEN,
 } from '../../../constants/action-types';
 import env from '../../../utils/env';
 // 新建ags对象
@@ -83,10 +84,10 @@ function createMap(opts = {}) {
         // getpoints();
         // When initialized...
         return ags.view.when(() => {
-          const homeBtn = new Home({
-            view: ags.view,
-          });
-          ags.view.ui.add(homeBtn, 'top-right');
+          // const homeBtn = new Home({
+          //   view: ags.view,
+          // });
+          // ags.view.ui.add(homeBtn, 'top-right');
           // Update the environment settings (either from the state or from the scene)
         });
       }
@@ -123,6 +124,9 @@ function createMap(opts = {}) {
         myModelRender(layer, payload);
         break;
       }
+
+      // 切换全屏
+
 
       // 地图纠错
       case ACTION_MAP_2D_CORRECT: {

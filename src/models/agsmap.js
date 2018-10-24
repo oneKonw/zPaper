@@ -2,7 +2,8 @@ import {
   INIT_MAP,
   VIEW_MODE_3D, SWITCH_MAP,
   SWITCH_MODEL,
-  SWITCH_MODEL_REAL, SWITCH_MODEL_WHITE, SWITCH_MODEL_CAO,
+  SWITCH_MODEL_REAL,
+  FULL_SCREEN,
 } from '../constants/action-types';
 
 export default {
@@ -12,6 +13,7 @@ export default {
     modelType: SWITCH_MODEL_REAL,
     mode: VIEW_MODE_3D,
     btnSwitchMapFlags: true,
+    fullScreenFlags: false,
     // ——————————————————————————————
     callflags: false,
     bookflags: false,
@@ -71,6 +73,10 @@ export default {
     },
     btnSwitchMapChangeState(state, action) {
       return { ...state, btnSwitchMapFlags: action.payload.btnSwitchMapFlags };
+    },
+    // 切换视图占比
+    fullScreenChangeState(state, action) {
+      return { ...state, fullScreenFlags: action.payload };
     },
     // 分割-----------------
   },

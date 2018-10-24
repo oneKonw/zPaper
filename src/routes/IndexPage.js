@@ -18,9 +18,10 @@ const ButtinGroup = Button.Group;
 class IndexPage extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   btnSwitchMapFlags: true,
-    // };
+    this.state = {
+      viewSpan: 10,
+      contentSpan: 14,
+    };
     this.viewDiv = null;
     this.btnSwitch2D = this.btnSwitch2D.bind(this);
     this.btnSwitch3D = this.btnSwitch3D.bind(this);
@@ -40,6 +41,20 @@ class IndexPage extends React.Component {
         viewMode: this.props.agsmap.mode,
       },
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.agsmap.fullScreenFlags === true) {
+      this.setState({
+        viewSpan: 24,
+        contentSpan: 0,
+      });
+    } else {
+      this.setState({
+        viewSpan: 10,
+        contentSpan: 14,
+      });
+    }
   }
 
   btnSwitch2D() {
@@ -88,11 +103,11 @@ class IndexPage extends React.Component {
         <Header />
         <TagFilter />
         <Row>
-          <Col span={14}>
+          <Col span={this.state.contentSpan}>
             <MapContent />
           </Col>
           <Col
-            span={10}
+            span={this.state.viewSpan}
             className={styles.mapDiv}
           >
             <div

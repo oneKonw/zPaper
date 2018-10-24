@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import {
   VIEW_MODE_3D, VIEW_MODE_2D,
   SWITCH_MODEL, SWITCH_MODEL_REAL, SWITCH_MODEL_WHITE, SWITCH_MODEL_SKETCH,
+  FULL_SCREEN,
 } from '../constants/action-types';
 
 const ButtinGroup = Button.Group;
@@ -13,10 +14,12 @@ class ModelToolbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      fullScreen: true,
     };
     this.btnSwitchModelWhite = this.btnSwitchModelWhite.bind(this);
     this.btnSwitchModelReal = this.btnSwitchModelReal.bind(this);
     this.btnSwitchModelSketch = this.btnSwitchModelSketch.bind(this);
+    this.btnFullScreen = this.btnFullScreen.bind(this);
   }
 
   btnSwitchModelWhite() {
@@ -40,6 +43,16 @@ class ModelToolbar extends Component {
     });
   }
 
+  btnFullScreen() {
+    this.props.dispatch({
+      type: 'agsmap/fullScreenChangeState',
+      payload: this.state.fullScreen,
+    });
+    this.setState({
+      fullScreen: !this.state.fullScreen,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -57,13 +70,14 @@ class ModelToolbar extends Component {
           <Button onClick={this.btnSwitchModelWhite} >白模</Button>
           <Button onClick={this.btnSwitchModelSketch} >草图</Button>
         </ButtinGroup>
-        {/* <Button
+        <Button
           style={{
             position: 'absolute',
             top: '10px',
             right: '10px',
           }}
-        >全屏</Button> */}
+          onClick={this.btnFullScreen}
+        >全屏</Button>
       </div>
     );
   }
