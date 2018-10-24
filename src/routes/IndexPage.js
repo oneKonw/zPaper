@@ -23,10 +23,6 @@ class IndexPage extends React.Component {
       contentSpan: 14,
     };
     this.viewDiv = null;
-    this.btnSwitch2D = this.btnSwitch2D.bind(this);
-    this.btnSwitch3D = this.btnSwitch3D.bind(this);
-    this.btnSwitchModelWhite = this.btnSwitchModelWhite.bind(this);
-    this.btnSwitchModelReal = this.btnSwitchModelReal.bind(this);
   }
 
   componentDidMount() {
@@ -57,46 +53,6 @@ class IndexPage extends React.Component {
     }
   }
 
-  btnSwitch2D() {
-    if (this.props.agsmap.mode !== VIEW_MODE_2D) {
-      this.props.dispatch({
-        type: 'agsmap/transMode2d',
-        payload: {
-          viewMode: VIEW_MODE_2D,
-          btnSwitchMapFlags: false,
-        },
-      });
-    }
-  }
-
-  btnSwitch3D() {
-    if (this.props.agsmap.mode !== VIEW_MODE_3D) {
-      this.props.dispatch({
-        type: 'agsmap/transMode3d',
-        payload: {
-          viewMode: VIEW_MODE_3D,
-          btnSwitchMapFlags: true,
-          // 识别模型状态
-          modelType: this.props.agsmap.modelType,
-        },
-      });
-    }
-  }
-
-  btnSwitchModelWhite() {
-    this.props.dispatch({
-      type: 'agsmap/transModel',
-      payload: SWITCH_MODEL_WHITE,
-    });
-  }
-
-  btnSwitchModelReal() {
-    this.props.dispatch({
-      type: 'agsmap/transModel',
-      payload: SWITCH_MODEL_REAL,
-    });
-  }
-
   render() {
     return (
       <div className={styles.wrapper}>
@@ -116,17 +72,6 @@ class IndexPage extends React.Component {
               }}
               className={styles.viewDiv}
             />
-            <ButtinGroup
-              className={styles.btnSwitchMap}
-            >
-              <Button
-                onClick={this.btnSwitch2D}
-              >二维</Button>
-              <Button
-                onClick={this.btnSwitch3D}
-              >三维</Button>
-              <Button>街景</Button>
-            </ButtinGroup>
             <ModelToolbar />
           </Col>
         </Row>

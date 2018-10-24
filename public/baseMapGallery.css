@@ -147,13 +147,13 @@
   text-align: center !important;
 }
 
-.esri-popup__header {
+/* .esri-popup__header {
   display: none !important;
 }
 
 .esri-popup__feature-buttons .esri-popup__actions {
   display: none !important;
-}
+} */
 
 .esri-view-height-less-than- .esri-popup__main-container {
   max-height: 300px !important;
