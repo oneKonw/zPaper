@@ -9,6 +9,7 @@ import MapView from 'esri/views/MapView';
 import WebMap from 'esri/WebMap';
 import WebScene from 'esri/WebScene';
 import Sceneview from 'esri/views/SceneView';
+import Home from 'esri/widgets/Home';
 // import EsriMap from 'esri/Map';
 
 // 组件
@@ -79,17 +80,20 @@ function createMap(opts = {}) {
           initSceneView();
         }
         // create buttons
-        // 创建地图自带的按钮
         // getpoints();
         // When initialized...
         return ags.view.when(() => {
+          const homeBtn = new Home({
+            view: ags.view,
+          });
+          ags.view.ui.add(homeBtn, 'top-right');
           // Update the environment settings (either from the state or from the scene)
         });
       }
 
       // 切换地图模式
       case SWITCH_MAP: {
-        console.log('切换', action.payload);
+        console.log('切换', ags.view);
         const viewPoint = ags.view.viewpoint.clone();
         ags.view.container = null;
         // const basemap = env.getDefaultBasemap3D();
@@ -104,7 +108,6 @@ function createMap(opts = {}) {
           // 获取并渲染建筑图层
           ags.view.when(() => {
             const layer = getLayerByItem(ags.view, env.getBuildLayerId());
-            console.log('图层', layer);
             myModelRender(layer, action.payload.modelType);
           });
         }
@@ -117,7 +120,6 @@ function createMap(opts = {}) {
       case SWITCH_MODEL: {
         const { payload } = action;
         const layer = getLayerByItem(ags.view, env.getBuildLayerId());
-        console.log('图层', layer);
         myModelRender(layer, payload);
         break;
       }
