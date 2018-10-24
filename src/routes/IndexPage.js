@@ -4,7 +4,7 @@ import { Avatar, Layout, Row, Col, Menu, Button } from 'antd';
 import Header from '../components/Header/Header';
 import TagFilter from '../components/ContentLayout/TagFilter';
 import MapContent from '../components/ContentLayout/MapContent';
-import ModelToolbar from '../../src/components/ModelToolbar';
+import ModelToolbar from '../../src/components/widgets/ModelToolbar';
 // import { Avatar, Layout, Row, Col, Menu } from 'antd';
 import env from '../utils/env';
 import styles from './IndexPage.css';

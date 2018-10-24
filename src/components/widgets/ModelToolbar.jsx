@@ -7,7 +7,7 @@ import {
   VIEW_MODE_3D, VIEW_MODE_2D,
   SWITCH_MODEL, SWITCH_MODEL_REAL, SWITCH_MODEL_WHITE, SWITCH_MODEL_SKETCH,
   FULL_SCREEN,
-} from '../constants/action-types';
+} from '../../constants/action-types';
 
 const ButtinGroup = Button.Group;
 
