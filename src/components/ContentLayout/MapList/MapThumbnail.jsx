@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'dva';
 import { Card } from 'antd';
 import styles from './MapThumbnail.css';
+
+import {
+  VIEW_GOTO,
+} from '../../../constants/action-types';
 
 const { Meta } = Card;
 
@@ -10,7 +15,17 @@ class MapThumbnail extends Component {
     this.state = {
       cardNum: 10,
     };
+
+    this.cardClick = this.cardClick.bind(this);
   }
+
+  cardClick() {
+    this.props.dispatch({
+      type: 'agsOperate/cardClick',
+      payload: VIEW_GOTO,
+    });
+  }
+
   // 返回地图缩略图组
   render() {
     const cardList = [];
@@ -18,6 +33,7 @@ class MapThumbnail extends Component {
       for (let i = 0; i < this.state.cardNum; i += 1) {
         cardList.push(
           <Card
+            onClick={this.cardClick}
             key={i}
             hoverable
             style={{
@@ -44,4 +60,8 @@ class MapThumbnail extends Component {
   }
 }
 
-export default MapThumbnail;
+export default connect(({ agsOperate }) => {
+  return {
+    agsOperate,
+  };
+})(MapThumbnail);

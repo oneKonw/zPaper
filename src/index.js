@@ -2,6 +2,7 @@ import dva from 'dva';
 import 'antd/dist/antd.css';
 import Router from './router';
 import { createMap } from './middleware/arcgis/sceneview/arcgis-sceneview';
+import { viewOperate } from './middleware/arcgis/sceneview/view-operate';
 
 import './index.css';
 
@@ -10,6 +11,7 @@ import './index.css';
 const app = dva({
   onAction: [
     createMap(),
+    viewOperate(),
   ],
 });
 
@@ -18,6 +20,7 @@ const app = dva({
 
 // 3. Model
 app.model(require('./models/agsmap').default);
+app.model(require('./models/agsOperate').default);
 // app.model(require('./models/search').default);
 
 // 4. Router
