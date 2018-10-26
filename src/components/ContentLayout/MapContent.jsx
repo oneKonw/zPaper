@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Row, Col } from 'antd';
 import MapThumbnail from './MapList/MapThumbnail';
+import MapProjectList from './MapList/MapProjectList';
 import styles from './MapContent.css';
 
 class MapContent extends Component {
@@ -12,10 +13,14 @@ class MapContent extends Component {
   }
   render() {
     return (
-      <div className={styles.all}>
-        {/* 地图缩略图 */}
-        <Row className={styles.MapThumbnail}>
-          <MapThumbnail />
+      <div>
+        <Row className={styles.contentList}>
+          <Col span={18} >
+            <MapThumbnail />
+          </Col>
+          <Col span={6} >
+            <MapProjectList />
+          </Col>
         </Row>
       </div>
     );

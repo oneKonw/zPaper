@@ -13,7 +13,7 @@ class MapThumbnail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardNum: 10,
+      cardNum: 8,
     };
 
     this.cardClick = this.cardClick.bind(this);
@@ -37,7 +37,7 @@ class MapThumbnail extends Component {
             key={i}
             hoverable
             style={{
-              width: '340px',
+              width: '300px',
               margin: '10px',
               overflow: 'scrollY',
             }}

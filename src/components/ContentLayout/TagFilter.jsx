@@ -3,7 +3,6 @@ import { connect } from 'dva';
 import { Row, Col, Button, Input } from 'antd';
 import styles from './TagFilter.css';
 
-const Search = Input.Search;
 const ButtinGroup = Button.Group;
 
 class TagFilter extends Component {
@@ -13,35 +12,15 @@ class TagFilter extends Component {
   }
   render() {
     return (
-      <div>
-        <Row className={styles.RowLine}>
-          <Col className={styles.tagFirst} span={6}>
-            <ButtinGroup>
-              <Button>所有</Button>
-              <Button>总体</Button>
-              <Button>分区</Button>
-              <Button>地段</Button>
-              <Button>地块</Button>
-            </ButtinGroup>
-          </Col>
-          <Col className={styles.tagSecond} span={6}>
-            <ButtinGroup>
-              <Button>滨海</Button>
-              <Button>山体</Button>
-              <Button>历史</Button>
-              <Button>湿地</Button>
-              <Button>公园</Button>
-            </ButtinGroup>
-          </Col>
-          <Col className={styles.search} span={6} offset={6}>
-            <Search
-              placeholder="搜索"
-              onSearch={value => console.log(value)}
-              style={{ width: 300 }}
-            />
-          </Col>
-        </Row>
-      </div>
+      <ButtinGroup
+        className={styles.btnToolBar}
+      >
+        <Button>量测</Button>
+        <Button>环视</Button>
+        <Button>阴影</Button>
+        <Button>导出</Button>
+        <Button>添加建议</Button>
+      </ButtinGroup>
     );
   }
 }

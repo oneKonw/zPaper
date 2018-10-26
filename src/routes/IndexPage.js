@@ -39,43 +39,18 @@ class IndexPage extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.agsmap.fullScreenFlags === true) {
-      this.setState({
-        viewSpan: 24,
-        contentSpan: 0,
-      });
-    } else {
-      this.setState({
-        viewSpan: 10,
-        contentSpan: 14,
-      });
-    }
-  }
-
   render() {
     return (
       <div className={styles.wrapper}>
         <Header />
+        <div
+          ref={(node) => {
+            this.viewDiv = node;
+          }}
+          className={styles.viewDiv}
+        />
         <TagFilter />
-        <Row>
-          <Col span={this.state.contentSpan}>
-            <MapContent />
-          </Col>
-          <Col
-            span={this.state.viewSpan}
-            className={styles.mapDiv}
-          >
-            <div
-              ref={(node) => {
-                this.viewDiv = node;
-              }}
-              className={styles.viewDiv}
-            />
-            <ModelToolbar />
-          </Col>
-        </Row>
-
+        <MapContent />
       </div>
     );
   }

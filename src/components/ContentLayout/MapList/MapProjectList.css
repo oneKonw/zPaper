@@ -1,0 +1,12 @@
+.all{
+  width: 100%;
+  /* height: 800px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projectList{
+  background-color: white;
+  width: 80%;
+}
