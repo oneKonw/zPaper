@@ -13,22 +13,27 @@ class MapContent extends Component {
   }
   render() {
     return (
-      <div>
-        <Row className={styles.contentList}>
-          <Col span={18} >
-            <MapThumbnail />
-          </Col>
-          <Col span={6} >
-            <MapProjectList />
-          </Col>
-        </Row>
-      </div>
+      <Row
+        className={styles.contentList}
+        style={{
+          display: this.props.agsOperate.flagsContent
+            ? 'block'
+            : 'none',
+        }}
+      >
+        <Col span={18} >
+          <MapThumbnail />
+        </Col>
+        <Col span={6} >
+          <MapProjectList />
+        </Col>
+      </Row>
     );
   }
 }
 
-export default connect(({ agsmap }) => {
+export default connect(({ agsOperate }) => {
   return {
-    agsmap,
+    agsOperate,
   };
 })(MapContent);

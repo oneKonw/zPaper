@@ -6,7 +6,9 @@ export default {
 
   namespace: 'agsOperate',
 
-  state: {},
+  state: {
+    flagsContent: false,
+  },
 
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
@@ -25,6 +27,9 @@ export default {
   reducers: {
     save(state, action) {
       return { ...state, ...action.payload };
+    },
+    changeStateContent(state, action) {
+      return { ...state, flagsContent: action.payload };
     },
   },
 };
