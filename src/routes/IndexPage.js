@@ -4,7 +4,7 @@ import { Avatar, Layout, Row, Col, Menu, Button } from 'antd';
 import Header from '../components/Header/Header';
 import ToolBar from '../components/ContentLayout/ToolBar';
 import MapContent from '../components/ContentLayout/MapContent';
-import ModelToolbar from '../../src/components/widgets/ModelToolbar';
+import MeasureBtn from '../components/widgets/MeasureBtn';
 // import { Avatar, Layout, Row, Col, Menu } from 'antd';
 import env from '../utils/env';
 import styles from './IndexPage.css';
@@ -50,6 +50,7 @@ class IndexPage extends React.Component {
           className={styles.viewDiv}
         />
         <ToolBar />
+        <MeasureBtn />
         <MapContent />
       </div>
     );

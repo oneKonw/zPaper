@@ -16,3 +16,8 @@ export const FULL_SCREEN = 'full-screen';
 
 export const VIEW_GOTO = 'view-goto';
 
+// measuer
+export const SCENE_MEASURE = 'scene-measure';
+export const SCENE_MEASURE_LINE = 'scene-measure-line';
+export const SCENE_MEASURE_AREA = 'scene-measure-area';
+

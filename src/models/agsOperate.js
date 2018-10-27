@@ -1,5 +1,6 @@
 import {
   VIEW_GOTO,
+  SCENE_MEASURE,
 } from '../constants/action-types';
 
 export default {
@@ -8,19 +9,27 @@ export default {
 
   state: {
     flagsContent: false,
+    flagsSceneMeasure: false,
   },
 
   subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
+    setup({ dispatch, history }) {
     },
   },
 
   effects: {
-    *fetch({ payload }, { call, put }) {  // eslint-disable-line
+    *fetch({ payload }, { call, put }) {
       yield put({ type: 'save' });
     },
     *cardClick({ payload }, { call, put }) {
       yield put({ type: VIEW_GOTO, payload });
+    },
+    *btnMeasure({ payload }, { call, put }) {
+      yield put({ type: 'changeStateSceneMeasuer', payload });
+      yield put({ type: SCENE_MEASURE, payload });
+    },
+    *sceneMeasure({ payload }, { call, put }) {
+      yield put({ type: SCENE_MEASURE, payload });
     },
   },
 
@@ -30,6 +39,9 @@ export default {
     },
     changeStateContent(state, action) {
       return { ...state, flagsContent: action.payload };
+    },
+    changeStateSceneMeasuer(state, action) {
+      return { ...state, flagsSceneMeasure: action.payload };
     },
   },
 };

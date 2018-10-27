@@ -3,6 +3,10 @@ import { connect } from 'dva';
 import { Row, Col, Button, Input } from 'antd';
 import styles from './ToolBar.css';
 
+import {
+  SCENE_MEASURE,
+} from '../../constants/action-types';
+
 const ButtinGroup = Button.Group;
 
 class ToolBar extends Component {
@@ -10,11 +14,14 @@ class ToolBar extends Component {
     super(props);
     this.state = {
       flagsContent: true,
+      flagsSceneMeasure: true,
     };
 
     this.btnAddSgs = this.btnAddSgs.bind(this);
+    this.btnMeasure = this.btnMeasure.bind(this);
   }
 
+  // 显示磁贴面版
   btnAddSgs() {
     this.props.dispatch({
       type: 'agsOperate/changeStateContent',
@@ -24,13 +31,26 @@ class ToolBar extends Component {
       flagsContent: !this.state.flagsContent,
     });
   }
+  // 显示地图面版
+  btnMeasure() {
+    this.props.dispatch({
+      type: 'agsOperate/btnMeasure',
+      payload: this.state.flagsSceneMeasure,
+    });
+    this.setState({
+      flagsSceneMeasure: !this.state.flagsSceneMeasure,
+    });
+  }
 
   render() {
     return (
       <ButtinGroup
         className={styles.btnToolBar}
       >
-        <Button>量测</Button>
+        <Button
+          onClick={this.btnMeasure}
+        >
+          量测</Button>
         <Button>环视</Button>
         <Button>阴影</Button>
         <Button>导出</Button>
