@@ -5,6 +5,7 @@ import styles from './ToolBar.css';
 
 import {
   SCENE_MEASURE,
+  LOOK_AROUND,
 } from '../../constants/action-types';
 
 const ButtinGroup = Button.Group;
@@ -15,10 +16,12 @@ class ToolBar extends Component {
     this.state = {
       flagsContent: true,
       flagsSceneMeasure: true,
+      flagsLookAround: true,
     };
 
     this.btnAddSgs = this.btnAddSgs.bind(this);
     this.btnMeasure = this.btnMeasure.bind(this);
+    this.btnLookAround = this.btnLookAround.bind(this);
   }
 
   // 显示磁贴面版
@@ -41,6 +44,16 @@ class ToolBar extends Component {
       flagsSceneMeasure: !this.state.flagsSceneMeasure,
     });
   }
+  // 环视
+  btnLookAround() {
+    this.props.dispatch({
+      type: 'agsOperate/btnLookAround',
+      payload: this.state.flagsLookAround,
+    });
+    this.setState({
+      flagsLookAround: !this.state.flagsLookAround,
+    });
+  }
 
   render() {
     return (
@@ -51,7 +64,9 @@ class ToolBar extends Component {
           onClick={this.btnMeasure}
         >
           量测</Button>
-        <Button>环视</Button>
+        <Button
+          onClick={this.btnLookAround}
+        >环视</Button>
         <Button>阴影</Button>
         <Button>导出</Button>
         <Button

@@ -1,6 +1,7 @@
 import {
   VIEW_GOTO,
   SCENE_MEASURE,
+  LOOK_AROUND,
 } from '../constants/action-types';
 
 export default {
@@ -27,6 +28,9 @@ export default {
     *btnMeasure({ payload }, { call, put }) {
       yield put({ type: 'changeStateSceneMeasuer', payload });
       yield put({ type: SCENE_MEASURE, payload });
+    },
+    *btnLookAround({ payload }, { call, put }) {
+      yield put({ type: LOOK_AROUND, payload });
     },
     *sceneMeasure({ payload }, { call, put }) {
       yield put({ type: SCENE_MEASURE, payload });
