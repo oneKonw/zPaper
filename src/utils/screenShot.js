@@ -14,6 +14,7 @@ function setMaskPosition(tempArea, maskDiv) {
   }
 }
 
+// 计算坐标
 function clamp(value, from, to) {
   // 坐标值大于0小于视图宽度则返回坐标值
   return value < from ? from : value > to ? to : value;
@@ -38,11 +39,7 @@ function showPreview(screenshot, screenshotDiv, screenshotImage) {
 
 // 下载截图
 function downloadImage(filename, dataUrl) {
-  // the download is handled differently in Microsoft browsers
-  // because the download attribute for <a> elements is not supported
   if (!window.navigator.msSaveOrOpenBlob) {
-    // in browsers that support the download attribute
-    // a link is created and a programmatic click will trigger the download
     const element = document.createElement('a');
     element.setAttribute('href', dataUrl);
     // 设置文件名
@@ -70,7 +67,6 @@ function downloadImage(filename, dataUrl) {
 
 // 将文字叠加上截图
 function getImageWithText(screenshot, tempText) {
-  console.log('截图', screenshot);
   const imageData = screenshot.data;
   // to add the text to the screenshot we create a new canvas element
   const canvas = document.createElement('canvas');

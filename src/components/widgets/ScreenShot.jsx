@@ -13,86 +13,49 @@ class ScreenShot extends Component {
 
     this.maskDiv = null;
     this.screenshotDiv = null;
-
+    this.myScreenshotImage = null;
+    // this.btnExport = this.btnExport.bind(this);
     this.btnClose = this.btnClose.bind(this);
     this.btnDloadImg = this.btnDloadImg.bind(this);
   }
 
+  componentDidMount() {
+    this.screenshotDiv.classList.add(styles.hide);
+    this.myScreenshotImage = document.getElementById('shotImage');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.agsOperate.flagsImgScreenShot) {
+      this.props.dispatch({
+        type: 'agsOperate/screenShot',
+        payload: {
+          maskDiv: this.maskDiv,
+          screenshotDiv: this.screenshotDiv,
+          screenshotImage: this.myScreenshotImage,
+          flagsImgScreenShot: false,
+        },
+      });
+    }
+  }
+
   // 截图返回视图
   btnClose() {
-    console.log('关闭');
     const ags = env.getParamAgs();
     this.screenshotDiv.classList.add(styles.hide);
     ags.view.container.classList.remove(styles.screenshotCursor);
   }
+
   // 截图下载本地
   btnDloadImg() {
-    const ags = env.getParamAgs();
     const text = document.getElementById('textInput').value;
-    // if a text exists, then add it to the image
-    if (text) {
-      const dataUrl = getImageWithText(this.state.imgScreenShot, text);
-      console.log('文字url', dataUrl);
-      downloadImage(ags.view.map.portalItem.title + '.png', dataUrl);
-    } else {
-      // otherwise download only the webscene screenshot
-      downloadImage(ags.view.map.portalItem.title + '.png', this.state.imgScreenShot.dataUrl);
-    }
-
-    // returns a new image created by adding a custom text to the webscene image
-    function getImageWithText(screenshot, tempText) {
-      console.log('截图', screenshot);
-      const imageData = screenshot.data;
-      // to add the text to the screenshot we create a new canvas element
-      const canvas = document.createElement('canvas');
-      console.log('上下文', canvas);
-      const context = canvas.getContext('2d');
-      canvas.height = imageData.height;
-      canvas.width = imageData.width;
-
-      // add the screenshot data to the canvas
-      context.putImageData(imageData, 0, 0);
-      context.font = '20px Arial';
-      context.fillStyle = '#000';
-      context.fillRect(0, imageData.height - 40, context.measureText(tempText).width + 20, 30);
-
-      // add the text from the textInput element
-      context.fillStyle = '#fff';
-      context.fillText(tempText, 10, imageData.height - 20);
-
-      return canvas.toDataURL();
-    }
-
-    function downloadImage(filename, dataUrl) {
-      // the download is handled differently in Microsoft browsers
-      // because the download attribute for <a> elements is not supported
-      if (!window.navigator.msSaveOrOpenBlob) {
-        // in browsers that support the download attribute
-        // a link is created and a programmatic click will trigger the download
-        const element = document.createElement('a');
-        element.setAttribute('href', dataUrl);
-        // 设置文件名
-        element.setAttribute('download', filename);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
-      } else {
-        console.log('dataurl', dataUrl);
-        // for MS browsers convert dataUrl to Blob
-        const byteString = atob(dataUrl.split(',')[1]);
-        const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
-        const ab = new ArrayBuffer(byteString.length);
-        const ia = new Uint8Array(ab);
-        for (let i = 0; i < byteString.length; i += 1) {
-          ia[i] = byteString.charCodeAt(i);
-        }
-        const blob = new Blob([ab], { type: mimeString });
-
-        // download file
-        window.navigator.msSaveOrOpenBlob(blob, filename);
-      }
-    }
+    console.log(this.props.agsOperate.imgScreenShot);
+    this.props.dispatch({
+      type: 'agsOperate/screenShotDload',
+      payload: {
+        midText: text,
+        midImg: this.props.agsOperate.urlScreenShot,
+      },
+    });
   }
 
   render() {

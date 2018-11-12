@@ -122,7 +122,7 @@ function viewOperate(opts = {}) {
                 ags.view.container.classList.remove(styles.screenshotCursor);
                 setMaskPosition(null, maskDiv);
                 store.dispatch({
-                  type: 'agsOperate/changeStateImgShot',
+                  type: 'agsOperate/changeStateUrlImgShot',
                   payload: screenshot,
                 });
                 // imgScreenShot = screenshot;
@@ -135,13 +135,10 @@ function viewOperate(opts = {}) {
       // 下载截图
       case SCREEN_DOWNLOAD: {
         const { midText, midImg } = action.payload;
-        console.log('mid截图', midText);
         if (midText) {
           const dataUrl = getImageWithText(midImg, midText);
-          console.log('文字url', dataUrl);
           downloadImage(ags.view.map.portalItem.title + '.png', dataUrl);
         } else {
-          // otherwise download only the webscene screenshot
           downloadImage(ags.view.map.portalItem.title + '.png', midImg.dataUrl);
         }
         break;

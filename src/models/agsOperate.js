@@ -13,7 +13,8 @@ export default {
     flagsContent: false,
     flagsSceneMeasure: false,
     flagsAnalysisShadow: false,
-    imgScreenShot: null,
+    urlScreenShot: null, // 截图url变量
+    flagsImgScreenShot: false, // 显示截图控件
   },
 
   subscriptions: {
@@ -40,6 +41,7 @@ export default {
     },
     *screenShot({ payload }, { call, put }) {
       yield put({ type: SCREEN_SHOT, payload });
+      yield put({ type: 'changeStateImgShot', payload });
     },
     *screenShotDload({ payload }, { call, put }) {
       yield put({ type: SCREEN_DOWNLOAD, payload });
@@ -59,8 +61,11 @@ export default {
     changeStateAnalysisShadow(state, action) {
       return { ...state, flagsAnalysisShadow: action.payload };
     },
+    changeStateUrlImgShot(state, action) {
+      return { ...state, urlScreenShot: action.payload };
+    },
     changeStateImgShot(state, action) {
-      return { ...state, imgScreenShot: action.payload };
+      return { ...state, flagsImgScreenShot: action.payload.flagsImgScreenShot };
     },
   },
 };

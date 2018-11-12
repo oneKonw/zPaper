@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Row, Col, Button, Input } from 'antd';
 import styles from './ToolBar.css';
 import env from '../../utils/env';
-import screenShot from '../widgets/ScreenShot';
+import ScreenShot from '../widgets/ScreenShot';
 
 const ButtinGroup = Button.Group;
 
@@ -13,22 +13,16 @@ class ToolBar extends Component {
     this.state = {
       flagsLookAround: true,
       imgScreenShot: null,
+      flagsScreenShot: false,
     };
-    this.maskDiv = null;
-    this.screenshotDiv = null;
 
     this.btnAddSgs = this.btnAddSgs.bind(this);
     this.btnMeasure = this.btnMeasure.bind(this);
     this.btnLookAround = this.btnLookAround.bind(this);
     this.btnAnalysisShadow = this.btnAnalysisShadow.bind(this);
     this.btnExport = this.btnExport.bind(this);
-    this.btnClose = this.btnClose.bind(this);
-    this.btnDloadImg = this.btnDloadImg.bind(this);
   }
 
-  componentDidMount() {
-    this.screenshotDiv.classList.add(styles.hide);
-  }
 
   // 显示磁贴面版
   btnAddSgs() {
@@ -62,36 +56,13 @@ class ToolBar extends Component {
       payload: !this.props.agsOperate.flagsAnalysisShadow,
     });
   }
+
   // 导出
   btnExport() {
-    const myScreenshotImage = document.getElementById('shotImage');
     this.props.dispatch({
-      type: 'agsOperate/screenShot',
+      type: 'agsOperate/changeStateImgShot',
       payload: {
-        maskDiv: this.maskDiv,
-        screenshotDiv: this.screenshotDiv,
-        screenshotImage: myScreenshotImage,
-      },
-    });
-  }
-
-  // 截图返回视图
-  btnClose() {
-    console.log('关闭');
-    const ags = env.getParamAgs();
-    this.screenshotDiv.classList.add(styles.hide);
-    ags.view.container.classList.remove(styles.screenshotCursor);
-  }
-
-  // 截图下载本地
-  btnDloadImg() {
-    const text = document.getElementById('textInput').value;
-    console.log(this.props.agsOperate.imgScreenShot);
-    this.props.dispatch({
-      type: 'agsOperate/screenShotDload',
-      payload: {
-        midText: text,
-        midImg: this.props.agsOperate.imgScreenShot,
+        flagsImgScreenShot: true,
       },
     });
   }
@@ -118,36 +89,11 @@ class ToolBar extends Component {
             onClick={this.btnAddSgs}
           >添加建议</Button>
         </ButtinGroup>
-        <div
-          ref={(node) => {
-            this.screenshotDiv = node;
-          }}
-          className={styles.screenshotDiv}
-        >
-          <img alt="截图" id="shotImage" />
-          <p />
-          <input type="text" placeholder="Image text" id="textInput" />
-          <Button
-            id="downloadBtn"
-            onClick={this.btnDloadImg}
-          >Download image</Button>
-          <Button
-            id="closeBtn"
-            onClick={this.btnClose}
-          >Back to webscene</Button>
-        </div>
-        <div
-          id="maskDiv"
-          ref={(node) => {
-            this.maskDiv = node;
-          }}
-          className={styles.maskDiv}
-        />
+        <ScreenShot />
       </div>
     );
   }
 }
-
 
 export default connect(({ agsOperate }) => {
   return {
