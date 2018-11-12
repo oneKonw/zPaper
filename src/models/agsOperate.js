@@ -11,6 +11,7 @@ export default {
   state: {
     flagsContent: false,
     flagsSceneMeasure: false,
+    flagsAnalysisShadow: false,
   },
 
   subscriptions: {
@@ -46,6 +47,9 @@ export default {
     },
     changeStateSceneMeasuer(state, action) {
       return { ...state, flagsSceneMeasure: action.payload };
+    },
+    changeStateAnalysisShadow(state, action) {
+      return { ...state, flagsAnalysisShadow: action.payload };
     },
   },
 };

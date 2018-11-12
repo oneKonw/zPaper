@@ -24,3 +24,6 @@ export const SCENE_MEASURE_AREA = 'scene-measure-area';
 // camera
 export const LOOK_AROUND = 'look-around';
 
+// shadow
+export const ANALYSIS_SHADOW = 'analysis_shadow';
+

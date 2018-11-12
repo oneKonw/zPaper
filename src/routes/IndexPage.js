@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Avatar, Layout, Row, Col, Menu, Button } from 'antd';
+
 import Header from '../components/Header/Header';
 import ToolBar from '../components/ContentLayout/ToolBar';
 import MapContent from '../components/ContentLayout/MapContent';
 import MeasureBtn from '../components/widgets/MeasureBtn';
+import AnalysisShadow from '../components/widgets/AnalysisShadow';
+
 // import { Avatar, Layout, Row, Col, Menu } from 'antd';
 import env from '../utils/env';
 import styles from './IndexPage.css';
@@ -52,6 +55,7 @@ class IndexPage extends React.Component {
         <ToolBar />
         <MeasureBtn />
         <MapContent />
+        <AnalysisShadow />
       </div>
     );
   }
