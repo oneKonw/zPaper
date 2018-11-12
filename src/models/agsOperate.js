@@ -2,6 +2,7 @@ import {
   VIEW_GOTO,
   SCENE_MEASURE,
   LOOK_AROUND,
+  SCREEN_SHOT, SCREEN_DOWNLOAD,
 } from '../constants/action-types';
 
 export default {
@@ -12,6 +13,7 @@ export default {
     flagsContent: false,
     flagsSceneMeasure: false,
     flagsAnalysisShadow: false,
+    imgScreenShot: null,
   },
 
   subscriptions: {
@@ -36,6 +38,12 @@ export default {
     *sceneMeasure({ payload }, { call, put }) {
       yield put({ type: SCENE_MEASURE, payload });
     },
+    *screenShot({ payload }, { call, put }) {
+      yield put({ type: SCREEN_SHOT, payload });
+    },
+    *screenShotDload({ payload }, { call, put }) {
+      yield put({ type: SCREEN_DOWNLOAD, payload });
+    },
   },
 
   reducers: {
@@ -50,6 +58,9 @@ export default {
     },
     changeStateAnalysisShadow(state, action) {
       return { ...state, flagsAnalysisShadow: action.payload };
+    },
+    changeStateImgShot(state, action) {
+      return { ...state, imgScreenShot: action.payload };
     },
   },
 };

@@ -27,3 +27,7 @@ export const LOOK_AROUND = 'look-around';
 // shadow
 export const ANALYSIS_SHADOW = 'analysis_shadow';
 
+// screenShot
+export const SCREEN_SHOT = 'screen-shot';
+export const SCREEN_DOWNLOAD = 'screen-shot-dload';
+
