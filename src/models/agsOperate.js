@@ -10,7 +10,7 @@ export default {
   namespace: 'agsOperate',
 
   state: {
-    flagsContent: false,
+    flagsContent: true,
     flagsSceneMeasure: false,
     flagsAnalysisShadow: false,
     urlScreenShot: null, // 截图url变量

@@ -19,7 +19,7 @@ class Sysheader extends Component {
           <Row type="flex">
             <Col span={8} className={styles.projectname}>
               <Icon type="heart" theme="twoTone" />{/* <img src={Logo} className={styles.logo} alt="" /> */}
-              <span className={styles.title}>城市设计案例库</span>
+              <span className={styles.title}>城市设计评价系统——黄浦江东岸开发空间贯通设计</span>
             </Col>
             <Col span={16} className={styles.userlogo}>
               <Menu
@@ -28,8 +28,8 @@ class Sysheader extends Component {
                 className="menu"
                 theme="dark"
               >
-                <Menu.Item key="outcome">我的收藏</Menu.Item>
-                <Menu.Item key="assistant">消息</Menu.Item>
+                <Menu.Item key="outcome">评价体系</Menu.Item>
+                <Menu.Item key="assistant">首页</Menu.Item>
                 <Menu.Item key="parametric">用户名</Menu.Item>
               </Menu>
             </Col>

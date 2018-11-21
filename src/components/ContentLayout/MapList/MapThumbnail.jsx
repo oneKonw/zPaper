@@ -3,6 +3,8 @@ import { connect } from 'dva';
 import { Card } from 'antd';
 import styles from './MapThumbnail.css';
 
+import IntoSystem from '../CardDiv/IntoSystem/IntoSystem';
+
 import {
   VIEW_GOTO,
 } from '../../../constants/action-types';
@@ -32,22 +34,7 @@ class MapThumbnail extends Component {
     if (this.state.cardNum != null) {
       for (let i = 0; i < this.state.cardNum; i += 1) {
         cardList.push(
-          <Card
-            onClick={this.cardClick}
-            key={i}
-            hoverable
-            style={{
-              width: '300px',
-              margin: '10px',
-              overflow: 'scrollY',
-            }}
-            cover={<img alt="examplw" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-          >
-            <Meta
-              title="城市名"
-              description="城市名一般很长可以这样分行"
-            />
-          </Card>,
+          <IntoSystem key={i} />,
         );
       }
     }

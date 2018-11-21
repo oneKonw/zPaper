@@ -1,0 +1,23 @@
+.topDiv{
+  position:relative;
+  height: 300px;
+  width: 300px;
+  margin: 15px;
+}
+
+.btnInto{
+  position: absolute;
+  top: 150px;
+  left: 60px;
+}
+.divBgClr{
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  background-color: black;
+  opacity: 0.7;
+}
+.divBgClr:hover{
+  background-color: aqua;
+  opacity: 0.7;
+}
