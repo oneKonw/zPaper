@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Button } from 'antd';
-import styles from './IntoSystem.css';
+import styles from '../CardDiv.css';
 
-import {
-  VIEW_GOTO,
-} from '../../../../constants/action-types';
+// import {
+//   VIEW_GOTO,
+// } from '../../../../../constants/action-types';
 
 class IntoSystem extends Component {
   constructor(props) {
@@ -29,8 +29,8 @@ class IntoSystem extends Component {
   // 首页
   render() {
     return (
-      <div className={styles.topDiv}>
-        <div className={styles.divBgClr} />
+      <div className={styles.divTop}>
+        <div className={styles.divIntoCityBgClr} />
         <Button
           ghost
           size={'large'}

@@ -9,7 +9,7 @@ import {
   setMaskPosition, clamp, showPreview,
   downloadImage, getImageWithText,
 } from '../../../utils/screenShot';
-import styles from '../../../components/ContentLayout/ToolBar.css';
+import styles from '../../../components/ContentLayout/ToolBar/ToolBar.css';
 
 import {
   VIEW_GOTO,

@@ -3,8 +3,8 @@ import { connect } from 'dva';
 import { Avatar, Layout, Row, Col, Menu, Button } from 'antd';
 
 import Header from '../components/Header/Header';
-import ToolBar from '../components/ContentLayout/ToolBar';
-import MapContent from '../components/ContentLayout/MapContent';
+import ToolBar from '../components/ContentLayout/ToolBar/ToolBar';
+import MapContent from '../components/ContentLayout/MapContent/MapContent';
 import MeasureBtn from '../components/widgets/MeasureBtn';
 import AnalysisShadow from '../components/widgets/AnalysisShadow';
 

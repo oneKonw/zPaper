@@ -1,0 +1,56 @@
+.divTop{
+  position:relative;
+  height: 300px;
+  width: 300px;
+  margin: 15px;
+}
+
+.divEchart{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  height: 300px;
+}
+.divBgClr{
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  background-color: black;
+  opacity: 0.7;
+}
+
+.divIntoCityBgClr{
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  background-color:#2affdf;
+  opacity: 0.7;
+}
+
+.imgProject{
+  position: absolute;
+  top:50px;
+  width: 300px;
+  height: 250px;
+}
+
+.btnInto{
+  position: absolute;
+  top: 110px;
+  left: 60px;
+  height: 80px;
+}
+.pTxt{
+  position: absolute;
+  color: white;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.txtImportPro{
+  position: absolute;
+  color: #ffffff87;
+  top: 75px;
+  left: 115px;
+  font-size: 91px;
+}

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Button, Input } from 'antd';
 import styles from './ToolBar.css';
-import env from '../../utils/env';
-import ScreenShot from '../widgets/ScreenShot';
+import ScreenShot from '../../widgets/ScreenShot';
 
 const ButtinGroup = Button.Group;
 
