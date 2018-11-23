@@ -21,10 +21,10 @@ class MapContent extends Component {
             : 'none',
         }}
       >
-        <Col span={18} >
+        <Col span={19} >
           <MapThumbnail />
         </Col>
-        <Col span={6} >
+        <Col span={5} >
           <MapProjectList />
         </Col>
       </Row>

@@ -24,8 +24,8 @@
   position: absolute;
   height: 300px;
   width: 300px;
-  background-color:#2affdf;
-  opacity: 0.7;
+  background-color:#48b6a5;
+  opacity: 0.9;
 }
 
 .imgProject{
@@ -34,12 +34,17 @@
   width: 300px;
   height: 250px;
 }
+.imgProject:hover{
+  cursor:pointer;
+}
 
 .btnInto{
   position: absolute;
-  top: 110px;
-  left: 60px;
   height: 80px;
+  width: 220px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .pTxt{
   position: absolute;
@@ -53,4 +58,7 @@
   top: 75px;
   left: 115px;
   font-size: 91px;
+}
+.txtImportPro:hover{
+  cursor:pointer;
 }

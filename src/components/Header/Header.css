@@ -1,21 +1,21 @@
 .header{
   background-color: #001529;
-  height: 50px;
-  line-height: 50px;
-}
-.projectname {
+  height: 5%;
   display: flex;
-  align-items: center;
+  justify-content: space-between
 }
-.userlogo {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
+
 .title {
-  display: block;
-  font-size: 20px;
+  position: relative;
   color: white;
-  padding-left: 10px;
-  letter-spacing: 3px;
+  /* display: inline; */
+  width: 50%;
+}
+.pTxt {
+  margin-left: 33px;
+  position: absolute;
+  font-size: 20px;
+  /* width: 100%; */
+  top: 50%;
+  transform: translateY(-50%);
 }

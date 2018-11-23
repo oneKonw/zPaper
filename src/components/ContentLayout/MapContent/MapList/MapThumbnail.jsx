@@ -10,6 +10,7 @@ import RecentProject from './CardDiv/RecentProject/RecentProject';
 import FactorAnalysis from './CardDiv/FactorAnalysis/FactorAnalysis';
 import FutureCity from './CardDiv/FutureCity/FutureCity';
 import ImportProject from './CardDiv/ImportProject/ImportProject';
+import BrowseCity from './CardDiv/BrowseCity/BrowseCity';
 
 import {
   VIEW_GOTO,
@@ -51,7 +52,7 @@ class MapThumbnail extends Component {
         <IntoSystem />
         <RecentProject />
         <AnalysisSystem />
-        <RecentProject />
+        <BrowseCity />
         <FactorAnalysis />
         <FutureCity />
         <ImportProject />

@@ -10,11 +10,12 @@ export default {
   namespace: 'agsOperate',
 
   state: {
-    flagsContent: true,
-    flagsSceneMeasure: false,
-    flagsAnalysisShadow: false,
+    flagsContent: true, // 显示磁贴
+    flagsSceneMeasure: false, // 显示测量按钮
+    flagsAnalysisShadow: false, // 显示日照分析组件
     urlScreenShot: null, // 截图url变量
     flagsImgScreenShot: false, // 显示截图控件
+    flagToolbar: false, // 显示工具条
   },
 
   subscriptions: {
@@ -53,7 +54,11 @@ export default {
       return { ...state, ...action.payload };
     },
     changeStateContent(state, action) {
-      return { ...state, flagsContent: action.payload };
+      return {
+        ...state,
+        flagsContent: action.payload.flagsContent,
+        flagToolbar: action.payload.flagToolbar,
+      };
     },
     changeStateSceneMeasuer(state, action) {
       return { ...state, flagsSceneMeasure: action.payload };
@@ -67,5 +72,8 @@ export default {
     changeStateImgShot(state, action) {
       return { ...state, flagsImgScreenShot: action.payload.flagsImgScreenShot };
     },
+    // changeStateToolbar(state, action) {
+    //   return { ...state, flagToolbar: action.payload.flagToolbar };
+    // },
   },
 };

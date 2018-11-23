@@ -20,9 +20,10 @@ class IntoSystem extends Component {
   cardClick() {
     this.props.dispatch({
       type: 'agsOperate/changeStateContent',
-      payload: !this.props.agsOperate.flagsContent,
-      // type: 'agsOperate/cardClick',
-      // payload: VIEW_GOTO,
+      payload: {
+        flagsContent: !this.props.agsOperate.flagsContent,
+        flagToolbar: !this.props.agsOperate.flagToolbar,
+      },
     });
   }
 

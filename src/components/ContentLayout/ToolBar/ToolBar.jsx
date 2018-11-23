@@ -27,7 +27,10 @@ class ToolBar extends Component {
   btnAddSgs() {
     this.props.dispatch({
       type: 'agsOperate/changeStateContent',
-      payload: !this.props.agsOperate.flagsContent,
+      payload: {
+        flagsContent: !this.props.agsOperate.flagsContent,
+        flagToolbar: !this.props.agsOperate.flagToolbar,
+      },
     });
   }
   // 显示测量面版
@@ -68,7 +71,13 @@ class ToolBar extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          display: this.props.agsOperate.flagToolbar
+            ? 'block'
+            : 'none',
+        }}
+      >
         <ButtinGroup
           className={styles.btnToolBar}
         >

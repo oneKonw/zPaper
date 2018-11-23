@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { List } from 'antd';
+import { Button } from 'antd';
 import styles from './MapProjectList.css';
+// import Item from 'antd/lib/list/Item';
 
 const data = [
   '【城市更新】加里宁格勒市中心重建规划',
@@ -20,25 +21,29 @@ class MapProjectList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardNum: 8,
     };
   }
 
   // 返回地图缩略图组
   render() {
+    const list = [];
+    data.map((item) => {
+      return list.push(<Button className={styles.btnListItem}>{item}</Button>);
+    });
     return (
       <div
-        className={styles.all}
+        className={styles.divTop}
       >
-        <List
+        {list}
+        {/* <List
           className={styles.projectList}
           size="large"
           header={<div>Header</div>}
           footer={<div>Footer</div>}
           bordered
           dataSource={data}
-          renderItem={item => (<List.Item>{item}</List.Item>)}
-        />
+          renderItem={item => (<List.Item>{item}</List.Item>)} */}
+        {/* /> */}
       </div>
 
     );

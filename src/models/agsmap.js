@@ -15,16 +15,6 @@ export default {
     btnSwitchMapFlags: true,
     fullScreenFlags: false,
     // ——————————————————————————————
-    callflags: false,
-    bookflags: false,
-    correctflags: false,
-    bookmarks: [],
-    bookname: null,
-    siderOpen: false,
-    openMenu: null,
-    chooseItemMenu: null,
-    prolistflags: false,
-    propicturechange: false,
   },
 
   subscriptions: {
