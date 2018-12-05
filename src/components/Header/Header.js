@@ -9,6 +9,20 @@ class Sysheader extends Component {
     super(props);
     this.state = {};
     // lid 2018-07-18 添加头部点击事件
+    this.btnAddSgs = this.btnAddSgs.bind(this);
+  }
+
+  // 显示磁贴面版
+  btnAddSgs() {
+    if (this.props.agsOperate.flagsContent === false) {
+      this.props.dispatch({
+        type: 'agsOperate/changeStateContent',
+        payload: {
+          flagsContent: !this.props.agsOperate.flagsContent,
+          flagToolbar: !this.props.agsOperate.flagToolbar,
+        },
+      });
+    }
   }
 
   render() {
@@ -22,17 +36,17 @@ class Sysheader extends Component {
           className="menu"
           theme="dark"
         >
-          <Menu.Item key="outcome">评价体系</Menu.Item>
-          <Menu.Item key="assistant">首页</Menu.Item>
-          <Menu.Item key="parametric">用户名</Menu.Item>
+          <Menu.Item key="1">评价体系</Menu.Item>
+          <Menu.Item key="2" onClick={this.btnAddSgs}>首页</Menu.Item>
+          <Menu.Item key="3">用户名</Menu.Item>
         </Menu>
       </div>
     );
   }
 }
 
-export default connect(({ agsmap }) => {
+export default connect(({ agsOperate }) => {
   return {
-    agsmap,
+    agsOperate,
   };
 })(Sysheader);

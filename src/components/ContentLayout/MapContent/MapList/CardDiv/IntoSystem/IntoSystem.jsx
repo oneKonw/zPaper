@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Button } from 'antd';
 import styles from '../CardDiv.css';
-
-// import {
-//   VIEW_GOTO,
-// } from '../../../../../constants/action-types';
+import imgProject from '../../../../../../assets/recent-project.png';
 
 class IntoSystem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardNum: 8,
+      projectName: '直达城市设计成果体系',
     };
 
     this.cardClick = this.cardClick.bind(this);
@@ -30,14 +27,22 @@ class IntoSystem extends Component {
   // 首页
   render() {
     return (
-      <div className={styles.divTop}>
-        <div className={styles.divIntoCityBgClr} />
-        <Button
-          ghost
-          size={'large'}
-          className={styles.btnInto}
-          onClick={this.cardClick}
-        >直达城市设计成果体系</Button>
+      <div className={styles.divIntoSys}>
+        <div className={styles.divMaskIntoSys} >
+          <Button
+            ghost
+            size={'large'}
+            className={styles.btnInto}
+            onClick={this.cardClick}
+          >直达城市设计成果体系</Button>
+        </div>
+        <div className={styles.divIntoSysBtn}>
+          <p className={styles.pTxt}>{this.state.projectName}</p>
+          <img
+            className={styles.imgProject}
+            src={imgProject} alt="项目图片"
+          />
+        </div>
       </div>
     );
   }

@@ -35,19 +35,9 @@ class MapThumbnail extends Component {
     });
   }
 
-  // 返回地图缩略图组
   render() {
-    // const cardList = [];
-    // if (this.state.cardNum != null) {
-    //   for (let i = 0; i < this.state.cardNum; i += 1) {
-    //     cardList.push(
-    //       <AnalysisSystem key={i} />,
-    //     );
-    //   }
-    // }
     return (
       <div className={styles.cardGroup}>
-        {/* {cardList} */}
         <NumCityImport />
         <IntoSystem />
         <RecentProject />

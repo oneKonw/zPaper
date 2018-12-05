@@ -15,7 +15,7 @@ class ToolBar extends Component {
       flagsScreenShot: false,
     };
 
-    this.btnAddSgs = this.btnAddSgs.bind(this);
+    // this.btnAddSgs = this.btnAddSgs.bind(this);
     this.btnMeasure = this.btnMeasure.bind(this);
     this.btnLookAround = this.btnLookAround.bind(this);
     this.btnAnalysisShadow = this.btnAnalysisShadow.bind(this);
@@ -23,16 +23,16 @@ class ToolBar extends Component {
   }
 
 
-  // 显示磁贴面版
-  btnAddSgs() {
-    this.props.dispatch({
-      type: 'agsOperate/changeStateContent',
-      payload: {
-        flagsContent: !this.props.agsOperate.flagsContent,
-        flagToolbar: !this.props.agsOperate.flagToolbar,
-      },
-    });
-  }
+  // // 显示磁贴面版
+  // btnAddSgs() {
+  //   this.props.dispatch({
+  //     type: 'agsOperate/changeStateContent',
+  //     payload: {
+  //       flagsContent: !this.props.agsOperate.flagsContent,
+  //       flagToolbar: !this.props.agsOperate.flagToolbar,
+  //     },
+  //   });
+  // }
   // 显示测量面版
   btnMeasure() {
     this.props.dispatch({
