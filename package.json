@@ -2,8 +2,13 @@
   "private": true,
   "scripts": {
     "start": "roadhog server",
-    "build": "roadhog build",
-    "lint": "eslint --ext .js src test"
+    "builddva": "roadhog build",
+    "lint": "eslint --ext .js src test",
+    "start:prod": "cross-env NODE_ENV=production pm2 start ./service/bin/www --name accountSystem",
+    "start:dev": "cross-env NODE_ENV=development pm2 start ./service/bin/www",
+    "build": "cross-env NODE_ENV=production roadhog build",
+    "test": "atool-test-mocha ./src/**/*-test.js",
+    "stop:dev":"cross-env NODE_ENV=development pm2 stop ./service/bin/www"
   },
   "engines": {
     "install-node": "6.11.1"

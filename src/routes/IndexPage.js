@@ -3,10 +3,12 @@ import { connect } from 'dva';
 import { Avatar, Layout, Row, Col, Menu, Button } from 'antd';
 
 import Header from '../components/Header/Header';
-import ToolBar from '../components/ContentLayout/ToolBar/ToolBar';
-import MapContent from '../components/ContentLayout/MapContent/MapContent';
+import ToolBar from '../components/ToolBar/ToolBar';
+// import MapContent from '../components/ContentLayout/MapContent/MapContent';
 import MeasureBtn from '../components/widgets/MeasureBtn';
 import AnalysisShadow from '../components/widgets/AnalysisShadow';
+import ViewpointAdd from '../components/widgets/ViewpointAdd';
+import BuildSearch from '../components/widgets/BuildSearch'; // 建筑查询控件
 
 // import { Avatar, Layout, Row, Col, Menu } from 'antd';
 import env from '../utils/env';
@@ -54,8 +56,10 @@ class IndexPage extends React.Component {
         />
         <ToolBar />
         <MeasureBtn />
-        <MapContent />
+        {/* <MapContent /> */}
         <AnalysisShadow />
+        <ViewpointAdd />
+        <BuildSearch />
       </div>
     );
   }

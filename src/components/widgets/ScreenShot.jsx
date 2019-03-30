@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Button, Input } from 'antd';
-import styles from '../ContentLayout/ToolBar/ToolBar.css';
+import styles from '../ToolBar/ToolBar.css';
 import env from '../../utils/env';
 
 class ScreenShot extends Component {

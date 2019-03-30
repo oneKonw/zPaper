@@ -31,3 +31,6 @@ export const ANALYSIS_SHADOW = 'analysis_shadow';
 export const SCREEN_SHOT = 'screen-shot';
 export const SCREEN_DOWNLOAD = 'screen-shot-dload';
 
+// searchBuild
+export const SEARCH_BUILD = 'SEARCH-BUILD';
+

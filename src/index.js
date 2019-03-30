@@ -21,6 +21,7 @@ const app = dva({
 // 3. Model
 app.model(require('./models/agsmap').default);
 app.model(require('./models/agsOperate').default);
+app.model(require('./models/linkService').default);
 // app.model(require('./models/search').default);
 
 // 4. Router

@@ -3,6 +3,7 @@ import {
   SCENE_MEASURE,
   LOOK_AROUND,
   SCREEN_SHOT, SCREEN_DOWNLOAD,
+  SEARCH_BUILD,
 } from '../constants/action-types';
 
 export default {
@@ -13,9 +14,13 @@ export default {
     flagsContent: true, // 显示磁贴
     flagsSceneMeasure: false, // 显示测量按钮
     flagsAnalysisShadow: false, // 显示日照分析组件
+    flagsSearchBuild: false,
     urlScreenShot: null, // 截图url变量
     flagsImgScreenShot: false, // 显示截图控件
-    flagToolbar: false, // 显示工具条
+    flagToolbar: true, // 显示工具条
+    flagViewpoint: false, // 添加观点面板默认不显示,hyt
+    slidesarrays: new Array(0), // 漫游数组,hyt
+    slidesarrayindex: -1, // 幻灯组索引
   },
 
   subscriptions: {
@@ -47,6 +52,9 @@ export default {
     *screenShotDload({ payload }, { call, put }) {
       yield put({ type: SCREEN_DOWNLOAD, payload });
     },
+    *btnSearchBuild({ payload }, { call, put }) {
+      yield put({ type: SEARCH_BUILD, payload });
+    },
   },
 
   reducers: {
@@ -71,6 +79,16 @@ export default {
     },
     changeStateImgShot(state, action) {
       return { ...state, flagsImgScreenShot: action.payload.flagsImgScreenShot };
+    },
+    changeStateViewPoint(state, action) {
+      return { ...state, flagViewpoint: action.payload.flagViewpoint };
+    },
+    setSlidesArray(state, action) {
+      return {
+        ...state,
+        slidesarrayindex: action.payload.slidesarrayindex,
+        slidesarrays: action.payload.slidesarrays,
+      };
     },
     // changeStateToolbar(state, action) {
     //   return { ...state, flagToolbar: action.payload.flagToolbar };

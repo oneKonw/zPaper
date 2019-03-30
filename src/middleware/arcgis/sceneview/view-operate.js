@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import AreaMeasurement3D from 'esri/widgets/AreaMeasurement3D';
 import DirectLineMeasurement3D from 'esri/widgets/DirectLineMeasurement3D';
+import QueryTask from 'esri/tasks/QueryTask';
+import Query from 'esri/tasks/support/Query';
+
+import { Carousel, Alert } from 'antd';
+// 以上为绝对引用
 
 import { removeMeasureWidget } from '../../../utils/sceneMeasure';
 import { myLookAround } from '../../../utils/lookAround';
@@ -9,13 +15,14 @@ import {
   setMaskPosition, clamp, showPreview,
   downloadImage, getImageWithText,
 } from '../../../utils/screenShot';
-import styles from '../../../components/ContentLayout/ToolBar/ToolBar.css';
+import styles from '../../../components/ToolBar/ToolBar.css';
 
 import {
   VIEW_GOTO,
   SCENE_MEASURE, SCENE_MEASURE_LINE, SCENE_MEASURE_AREA,
   LOOK_AROUND,
   SCREEN_SHOT, SCREEN_DOWNLOAD,
+  SEARCH_BUILD,
 } from '../../../constants/action-types';
 import env from '../../../utils/env';
 
@@ -141,6 +148,86 @@ function viewOperate(opts = {}) {
         } else {
           downloadImage(ags.view.map.portalItem.title + '.png', midImg.dataUrl);
         }
+        break;
+      }
+
+      // 建筑查询
+      case SEARCH_BUILD: {
+        // const ags = env.getParamAgs();
+        const view = ags.view;
+        const scene = view.map;
+        // console.log(scene.allLayers);
+        const sceneLayer = scene.allLayers.items[2];
+        const queryUrl = sceneLayer.parsedUrl.path;
+        // console.log(ags.view.layerViews.items[0]);
+        // console.log('url', sceneLayer.parsedUrl.path);
+        // console.log('getFieldUsageInfo', sceneLayer.getFieldUsageInfo());
+        // ----------------find task-------------------------
+        // const find = new FindTask({
+        //   url: sceneLayer.parsedUrl.path,
+        // });
+        // const params = new FindParameters({
+        //   // layerIds: [5],
+        //   searchFields: ['*'],
+        // });
+        // params.searchText = 'g';
+        // find.execute(params)
+        //   .then((response) => {
+        //     // const results = response.results;
+        //     console.log('findResponse', response);
+        //   })
+        //   .catch((error) => {
+        //     console.error('results', error.message);
+        //   });
+        // ----------------find task-------------------------
+        // ----------------query task -----------------------
+        // const qTask = new QueryTask({
+        //   url: queryUrl,
+        // });
+        // const paramsQuery = new Query({
+        //   returnGeometry: false,
+        //   outFields: ['*'],
+        //   where: "description = 'Multi Family Residential'",
+        //   // where: 'yddm = \'H14\'',
+        // });
+        // // paramsQuery.where = 'SSD_RESA_PY_ModelName = \'SW1J000A\'';
+        // qTask.execute(paramsQuery)
+        //   .then((response) => {
+        //     console.log('queryResponse', response);
+        //   })
+        //   .catch((error) => {
+        //     console.error('results', error.message);
+        //   });
+        // ----------------query task -----------------------
+        // const query = new Query({
+        //   where: 'description = \'Multi Family Residential\'',
+        //   outFields: ['*'],
+        // });
+        // console.log('Query', query);
+        // sceneLayer.queryFeatures(query)
+        //   .then((response) => {
+        //     console.log('response', response);
+        //   })
+        //   .catch((error) => {
+        //     console.error('Error', error.message);
+        //   });
+        // view.whenLayerView(sceneLayer).then((sceneLayerView) => {
+        //   console.log('Layerview', sceneLayerView);
+        // });
+        // -----------------queryFeatures------------------------
+
+        const query = new Query({
+          outFields: ['*'],
+        });
+
+        sceneLayer.queryFeatures(query)
+          .then((result) => {
+            const tempResult = result;
+            console.log(tempResult);
+          }).catch((error) => {
+            console.error('Error', error.message);
+          });
+
         break;
       }
 

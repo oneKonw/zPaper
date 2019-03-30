@@ -1,4 +1,4 @@
-import styles from '../components/ContentLayout/ToolBar/ToolBar.css';
+import styles from '../components/ToolBar/ToolBar.css';
 
 // 遮罩位置
 function setMaskPosition(tempArea, maskDiv) {
