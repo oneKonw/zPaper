@@ -158,6 +158,35 @@ function viewOperate(opts = {}) {
         const scene = view.map;
         // console.log(scene.allLayers);
         const sceneLayer = scene.allLayers.items[2];
+        sceneLayer.visible = false;
+        // console.log(sceneLayer.getFieldUsageInfo('name'));
+        console.log(sceneLayer);
+
+        let query = new Query({
+          objectIds: ['10555'],
+          // indicates the query should return all attributes
+          outFields: ["*"]
+        });
+        view.whenLayerView(sceneLayer).then((sceneLayerView) => {
+
+          sceneLayerView.queryExtent(query).then((result) => {
+            view.goTo(
+              {
+                target: result.extent.expand(2),
+                tilt: 60
+              },
+              {
+                duration: 1000,
+                easing: "out-expo"
+              }
+            );
+          });
+
+          sceneLayerView.queryFeatures(query).then((result) => {
+            console.log(result.features[0].attributes);
+          });
+        });
+
         const queryUrl = sceneLayer.parsedUrl.path;
         // console.log(ags.view.layerViews.items[0]);
         // console.log('url', sceneLayer.parsedUrl.path);
@@ -216,18 +245,18 @@ function viewOperate(opts = {}) {
         // });
         // -----------------queryFeatures------------------------
 
-        const query = new Query({
-          outFields: ['*'],
-        });
+        // const query = new Query({
+        //   outFields: ['*'],
+        // });
 
-        sceneLayer.queryFeatures(query)
-          .then((result) => {
-            const tempResult = result;
-            console.log(tempResult);
-          }).catch((error) => {
-            console.error('Error', error.message);
-          });
-
+        // sceneLayer.queryFeatures(query)
+        //   .then((result) => {
+        //     const tempResult = result;
+        //     console.log(tempResult);
+        //   }).catch((error) => {
+        //     console.error('Error', error.message);
+        //   });
+        // -------------------layerview query --------------
         break;
       }
 

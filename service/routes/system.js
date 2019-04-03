@@ -9,6 +9,7 @@ router.post('/login', function (req, res, next) {
 	let userInfo = req.body; // post到服务端的数据
 	User.findByUserName(userInfo['username'], function (err, userList) { //model的静态方法
 		if (err) {
+			console.log("找不到数据");
 			res.send({
 				error: err // 找不到名字则返回错误
 			});

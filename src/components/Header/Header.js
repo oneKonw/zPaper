@@ -79,7 +79,7 @@ class Sysheader extends Component {
           className="menu"
           theme="dark"
         >
-          <Menu.Item key="1">评价体系</Menu.Item>
+          {/* <Menu.Item key="1">评价体系</Menu.Item> */}
           <Menu.Item key="2" onClick={this.btnAddSgs}>首页</Menu.Item>
           <Menu.Item key="3" onClick={this.loginClick}>用户名</Menu.Item>
         </Menu>

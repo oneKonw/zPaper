@@ -65,5 +65,9 @@ export default {
     hideModal(state) {
       return { ...state, modalVisible: false };
     },
+    loginSuccess(state, action) { //登录成功
+      let userInfo = action.payload; // 登录数据
+      return { ...state, ...userInfo, isLogin: true, modalVisible: false };
+  },
   },
 };
