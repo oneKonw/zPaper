@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col } from 'antd';
+import { Row, Col, Button, Input } from 'antd';
 import Slide from 'esri/webscene/Slide';
 import styles from './ViewpointAdd.css';
 import env from '../../utils/env';
 
+const ButtonGroup = Button.Group;
 
 class ViewpointAdd extends Component {
   constructor(props) {
@@ -206,80 +207,60 @@ class ViewpointAdd extends Component {
             : 'none',
         }}
       >
-        <div
-          className={styles.listdiv}
-        >
-          <p
-            className={styles.ptitle}
+        <div className={styles.divTitle} >
+          <span className={styles.spanTitleFont} >漫游</span>
+          <span className={styles.spanModalShow} onClick={this.listVisible} >X</span>
+        </div>
+        <ButtonGroup className={styles.btnGp}>
+          <Button
+            className={styles.btnToolBar}
+            onClick={this.onSlideCreateClick}
           >
-            {this.props.agsOperate.programchoose}<span
-              className={styles.spantitle}
-              onClick={this.listVisible}
-            >
-              X
-          </span>
-          </p>
-          <div>
-            <Row>
-              <Col span="4" offset="2" >
-                <button
-                  onClick={this.onSlideCreateClick}
-                  className={styles.btnToolBar}
-                >
-                  截取
-                </button>
-              </Col>
-              <Col span="4" >
-                <button
-                  onClick={this.onPlayButtonClick}
-                  className={styles.btnToolBar}
-                >
-                  播放
-                </button>
-              </Col>
-              <Col span="4" >
-                <button
-                  onClick={this.onSlideDeletClick}
-                  className={styles.btnToolBar}
-                >
-                  删除
-                </button>
-              </Col>
-              <Col span="4" >
-                <button
-                  onClick={this.onSlideAddClick}
-                  className={styles.btnToolBar}
-                >
-                  添加
-                </button>
-              </Col>
-              <Col span="4" >
-                <button
-                  onClick={this.onSaveButtonClick}
-                  className={styles.btnToolBar}
-                >
-                  保存
-                </button>
-              </Col>
-            </Row>
-            <Row
-              style={{
-                margin: '5px',
-              }}
-            >
-              <Col span="6">
-                <span>漫游名称：</span>
-              </Col>
-              <Col span="14">
-                <input type="text" ref={(ref) => { this.title = ref; }} defaultValue="" />
-              </Col>
-              <Col span="4">
-                <button onClick={this.onSaveTitleButtonClick}>确定</button>
-              </Col>
-            </Row>
-            <div className={styles.divSlides}>
-              {slideDivList}
-            </div>
+            截取
+              </Button>
+          <Button
+            className={styles.btnToolBar}
+            onClick={this.onSlideAddClick}
+          >
+            添加
+              </Button>
+          <Button
+            className={styles.btnToolBar}
+            onClick={this.onSlideDeletClick}
+          >
+            删除
+              </Button>
+          <Button
+            className={styles.btnToolBar}
+            onClick={this.onPlayButtonClick}
+          >
+            播放
+              </Button>
+          <Button
+            className={styles.btnToolBar}
+            onClick={this.onSaveButtonClick}
+          >
+            保存
+              </Button>
+        </ButtonGroup>
+        <div>
+          <Row
+            style={{
+              margin: '5px',
+            }}
+          >
+            <Col span="6">
+              <span className={styles.sapnSave} >漫游名称：</span>
+            </Col>
+            <Col span="14">
+              <Input className={styles.inputSave} type="text" ref={(ref) => { this.title = ref; }} defaultValue="" />
+            </Col>
+            <Col span="4">
+              <Button onClick={this.onSaveTitleButtonClick} className={styles.btnSave} >确定</Button>
+            </Col>
+          </Row>
+          <div className={styles.divSlides}>
+            {slideDivList}
           </div>
         </div>
       </div>

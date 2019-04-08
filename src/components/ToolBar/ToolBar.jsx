@@ -21,7 +21,9 @@ class ToolBar extends Component {
     this.btnAnalysisShadow = this.btnAnalysisShadow.bind(this);
     this.btnExport = this.btnExport.bind(this);
     this.btnRoam = this.btnRoam.bind(this);
-    // this.btnSearchBuild = this.btnSearchBuild.bind(this);
+    this.btnSearchBuild = this.btnSearchBuild.bind(this);
+    this.btnPjReview = this.btnPjReview.bind(this);
+
   }
 
 
@@ -81,12 +83,25 @@ class ToolBar extends Component {
     });
   }
 
-  // // 建筑查询
-  // btnSearchBuild() {
-  //   this.props.dispatch({
+  // 建筑查询
+  btnSearchBuild() {
+    this.props.dispatch({
+      type: 'agsOperate/changeStateBuildSearch',
+      payload: {
+        flagBuildSearch: !this.props.agsOperate.flagBuildSearch,
+      },
+    });
+  }
 
-  //   })
-  // }
+  // 方案评审
+  btnPjReview() {
+    this.props.dispatch({
+      type: 'agsOperate/changeStatePjReview',
+      payload: {
+        falgPjReview: !this.props.agsOperate.falgPjReview,
+      },
+    });
+  }
 
   render() {
     return (
@@ -121,6 +136,11 @@ class ToolBar extends Component {
           <Button
             onClick={this.btnSearchBuild}
           >建筑查询</Button>
+          <Button
+            onClick={this.btnPjReview}
+          >
+            方案评审
+          </Button>
         </ButtinGroup>
         <ScreenShot />
       </div>

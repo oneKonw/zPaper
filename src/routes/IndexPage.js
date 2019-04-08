@@ -9,6 +9,7 @@ import MeasureBtn from '../components/widgets/MeasureBtn';
 import AnalysisShadow from '../components/widgets/AnalysisShadow';
 import ViewpointAdd from '../components/widgets/ViewpointAdd';
 import BuildSearch from '../components/widgets/BuildSearch'; // 建筑查询控件
+import PjReview from '../components/widgets/PjReview'; // 方案评审
 
 // import { Avatar, Layout, Row, Col, Menu } from 'antd';
 import env from '../utils/env';
@@ -60,6 +61,7 @@ class IndexPage extends React.Component {
         <AnalysisShadow />
         <ViewpointAdd />
         <BuildSearch />
+        <PjReview />
       </div>
     );
   }

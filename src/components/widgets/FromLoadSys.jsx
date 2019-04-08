@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Form, Input, Icon } from 'antd';
 // import { formItemLayout } from '../../../../constants/constants';
-import styles from './FromLoadSys.css';
+import styles from './FromLoadSys.less';
 
 const FormItem = Form.Item;
 

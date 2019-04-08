@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Slider, DatePicker, Row, Col, Checkbox, Button, Icon } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import styles from './AnalysisShadow.css';
+import styles from './AnalysisShadow.less';
 import env from '../../utils/env';
 
 class AnalysisShadow extends Component {
@@ -179,13 +179,14 @@ class AnalysisShadow extends Component {
                 marginBottom: '8px',
               }}
             >
-              <Col span="18" offset="1">
+              <Col span="18" offset="1" >
                 <DatePicker
                   showToday={false}
                   allowClear={false}
                   defaultValue={this.state.valuetime}
                   format="YYYY-MM-DD"
                   onChange={this.onDatepickerChange}
+                  className={styles.dpShadow}
                 />
               </Col>
               <Col span="2" offset="1" className={styles.settingItem}>

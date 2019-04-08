@@ -34,3 +34,6 @@ export const SCREEN_DOWNLOAD = 'screen-shot-dload';
 // searchBuild
 export const SEARCH_BUILD = 'SEARCH-BUILD';
 
+// projectReview
+export const PROJECT_REVIEW = "project-review";
+

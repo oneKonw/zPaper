@@ -4,6 +4,7 @@ import {
   LOOK_AROUND,
   SCREEN_SHOT, SCREEN_DOWNLOAD,
   SEARCH_BUILD,
+  PROJECT_REVIEW,
 } from '../constants/action-types';
 
 export default {
@@ -21,6 +22,8 @@ export default {
     flagViewpoint: false, // 添加观点面板默认不显示,hyt
     slidesarrays: new Array(0), // 漫游数组,hyt
     slidesarrayindex: -1, // 幻灯组索引
+    flagBuildSearch: false, // 建筑查询
+    falgPjReview: false, // 方案评审
   },
 
   subscriptions: {
@@ -55,6 +58,9 @@ export default {
     *btnSearchBuild({ payload }, { call, put }) {
       yield put({ type: SEARCH_BUILD, payload });
     },
+    *pjReview({ payload }, { call, put }) {
+      yield put({ type: PROJECT_REVIEW, payload });
+    },
   },
 
   reducers: {
@@ -82,6 +88,12 @@ export default {
     },
     changeStateViewPoint(state, action) {
       return { ...state, flagViewpoint: action.payload.flagViewpoint };
+    },
+    changeStateBuildSearch(state, action) {
+      return { ...state, flagBuildSearch: action.payload.flagBuildSearch };
+    },
+    changeStatePjReview(state, action) {
+      return { ...state, falgPjReview: action.payload.falgPjReview };
     },
     setSlidesArray(state, action) {
       return {

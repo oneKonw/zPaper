@@ -23,6 +23,7 @@ import {
   LOOK_AROUND,
   SCREEN_SHOT, SCREEN_DOWNLOAD,
   SEARCH_BUILD,
+  PROJECT_REVIEW,
 } from '../../../constants/action-types';
 import env from '../../../utils/env';
 
@@ -158,13 +159,11 @@ function viewOperate(opts = {}) {
         const scene = view.map;
         // console.log(scene.allLayers);
         const sceneLayer = scene.allLayers.items[2];
-        sceneLayer.visible = false;
         // console.log(sceneLayer.getFieldUsageInfo('name'));
         console.log(sceneLayer);
 
         let query = new Query({
           objectIds: ['10555'],
-          // indicates the query should return all attributes
           outFields: ["*"]
         });
         view.whenLayerView(sceneLayer).then((sceneLayerView) => {
@@ -257,6 +256,53 @@ function viewOperate(opts = {}) {
         //     console.error('Error', error.message);
         //   });
         // -------------------layerview query --------------
+        break;
+
+
+      }
+
+      // 方案评审
+      /**
+       * [0]底图[1]地形[2]其他建筑[3]规划建筑
+       * [4]方案二[5]规划地面[6]二道路[7]二树木[8]二建筑
+       * [9]方案一[10]规划地面[11]一道路[12]一树木[13]一建筑
+       */
+      case PROJECT_REVIEW: {
+        // console.log(action.payload);
+        const view = ags.view;
+        const scene = view.map;
+        let layerCode;
+        let show;
+        // 图层数，底图地形图，方案总图不进行对比切换
+        let allLayers = ["2", "3", "5", "6", "7", "8", "10", "11", "12", "13"];
+        // checkedKeys勾选状态的数组
+        let { checkedKeys, checked } = action.payload;
+        if (checkedKeys != undefined) {
+          /**
+           * 总图层与勾选图层双遍历，数组产生重叠则显示图层，不重叠则不显示
+           */
+          for (let index = 0; index < allLayers.length; index++) {
+            const tempCode = allLayers[index];
+            const sceneLayer = scene.allLayers.items[tempCode];
+
+            show = false; // 默认为不显示
+
+            for (let index1 = 0; index1 < checkedKeys.length; index1++) {
+              // 产生重叠则显示图层
+              if (tempCode == checkedKeys[index1]) {
+                show = true;
+                break; // 产生重叠即可跳出循环
+              }
+            }
+
+            if (show) {
+              sceneLayer.visible = true; // 建筑图层切换
+            } else {
+              sceneLayer.visible = false; // 建筑图层切换
+            }
+          }
+        }
+
         break;
       }
 

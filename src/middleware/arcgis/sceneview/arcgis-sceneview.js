@@ -79,6 +79,17 @@ function createMap(opts = {}) {
         } else if (viewMode === VIEW_MODE_3D) {
           // 初始化三维场景
           initSceneView();
+
+          // 隐藏方案评审图层
+          ags.view.when(() => {
+            let unShowLayers = [6, 7, 8, 11, 12, 13];
+            for (let index = 0; index < unShowLayers.length; index++) {
+              let tempCode = unShowLayers[index];
+              ags.view.map.allLayers.items[tempCode].visible = false;
+
+            }
+          });
+
         }
         // create buttons
         // getpoints();
@@ -110,6 +121,7 @@ function createMap(opts = {}) {
           ags.view.when(() => {
             const layer = getLayerByItem(ags.view, env.getBuildLayerId());
             myModelRender(layer, action.payload.modelType);
+
           });
         }
         ags.view.viewpoint = viewPoint;
@@ -192,7 +204,7 @@ function initSceneView() {
       lighting: {
         // date: new Date(), // 当前时间
         date: new Date('March 15, 2015 7:00:00'),
-        directShadowsEnabled: false,
+        directShadowsEnabled: false, //阴影开关
         cameraTrackingEnabled: false,
       },
     },
