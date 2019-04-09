@@ -24,6 +24,9 @@ export default {
     slidesarrayindex: -1, // 幻灯组索引
     flagBuildSearch: false, // 建筑查询
     falgPjReview: false, // 方案评审
+    flagBuffer: false, // 缓冲分析
+    flagAdd3D: false, // 3d添加
+    hightLight: null, // 高光建筑
   },
 
   subscriptions: {
@@ -95,12 +98,22 @@ export default {
     changeStatePjReview(state, action) {
       return { ...state, falgPjReview: action.payload.falgPjReview };
     },
+    changeStateBuffer(state, action) {
+      return { ...state, flagBuffer: action.payload.flagBuffer };
+    },
+    changeStateAdd3D(state, action) {
+      return { ...state, flagAdd3D: action.payload.flagAdd3D };
+    },
     setSlidesArray(state, action) {
       return {
         ...state,
         slidesarrayindex: action.payload.slidesarrayindex,
         slidesarrays: action.payload.slidesarrays,
       };
+    },
+
+    setStateHightLight(state, action) {
+      return { ...state, hightLight: action.payload };
     },
     // changeStateToolbar(state, action) {
     //   return { ...state, flagToolbar: action.payload.flagToolbar };

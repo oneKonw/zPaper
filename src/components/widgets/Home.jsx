@@ -2,6 +2,7 @@ import React from 'react';
 import HomeViewModel from 'esri/widgets/Home/HomeViewModel';
 
 import styles from './WidgetButtons.css';
+import env from '../../utils/env';
 
 class Home extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    // this.state.vm.view = env.getParamAgs().view;
     this.props.view.when((view) => {
       this.state.vm.view = view;
     });
@@ -30,8 +32,8 @@ class Home extends React.Component {
       <div
         style={{
           position: 'absolute',
-          bottom: '130px',
-          right: '10px',
+          bottom: '60px',
+          right: '0px',
           zIndex: 12,
         }}
       >

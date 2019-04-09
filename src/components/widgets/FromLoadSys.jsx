@@ -29,7 +29,7 @@ const CustomerForm = ({
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: '请输入用户名' }],
           })(
-            <Input size="large" prefix={<Icon type="user" className={styles.iconUserData} />} placeholder="Username" />
+            <Input size="large" className={styles.inputUserData} prefix={<Icon type="user" className={styles.iconUserData} />} placeholder="Username" />
           )}
         </Form.Item>
         <FormItem >
@@ -42,7 +42,7 @@ const CustomerForm = ({
                 }
               ]
             })(
-              <Input size="large" prefix={<Icon type="lock"className={styles.iconUserData} />} type="password" placeholder="Password" />
+              <Input size="large" className={styles.inputUserData} prefix={<Icon type="lock"className={styles.iconUserData} />} type="password" placeholder="Password" />
               )
           }
         </FormItem>

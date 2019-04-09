@@ -1,9 +1,12 @@
 import React from 'react';
 import styles from './Getpoints.css';
+import env from '../../utils/env';
+
 
 /*
   获取点坐标
 */
+const view = env.getParamAgs().view;
 
 class Getpoints extends React.Component {
   constructor(props) {
@@ -20,16 +23,24 @@ class Getpoints extends React.Component {
   }
 
   getMappoints() {
-    this.props.view.when((view) => {
-      view.on('pointer-move', (event) => {
-        // 将屏幕点坐标转化为map点坐标
-        const point = view.toMap({ x: event.x, y: event.y });
-        this.setState({
-          latitude: Math.round(point.latitude * 100) / 100,
-          longitude: Math.round(point.longitude * 100) / 100,
-        });
+    view.on('pointer-move', (event) => {
+      // 将屏幕点坐标转化为map点坐标
+      const point = view.toMap({ x: event.x, y: event.y });
+      this.setState({
+        latitude: Math.round(point.latitude * 100) / 100,
+        longitude: Math.round(point.longitude * 100) / 100,
       });
     });
+    // this.props.view.when((view) => {
+    //   view.on('pointer-move', (event) => {
+    //     // 将屏幕点坐标转化为map点坐标
+    //     const point = view.toMap({ x: event.x, y: event.y });
+    //     this.setState({
+    //       latitude: Math.round(point.latitude * 100) / 100,
+    //       longitude: Math.round(point.longitude * 100) / 100,
+    //     });
+    //   });
+    // });
   }
   render() {
     return (

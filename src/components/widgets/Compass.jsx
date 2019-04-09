@@ -47,7 +47,7 @@ class Compass extends React.Component {
       <div
         style={{
           position: 'absolute',
-          bottom: '132px',
+          bottom: '10px',
           right: '0',
           zIndex: 12,
         }}

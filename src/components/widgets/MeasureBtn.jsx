@@ -41,8 +41,8 @@ class MeasureBtn extends Component {
       <ButtinGroup
         style={{
           position: 'absolute',
-          top: '80px',
-          right: '60px',
+          top: '120px',
+          right: '15px',
           display: this.props.agsOperate.flagsSceneMeasure
             ? 'block'
             : 'none',

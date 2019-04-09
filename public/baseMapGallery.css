@@ -158,6 +158,11 @@
 .esri-view-height-less-than- .esri-popup__main-container {
   max-height: 300px !important;
 }
+
+.esri-ui-top-right{
+  top: 108px;
+}
+
 .ant-modal-content {
   border-radius: 0px !important;
 }

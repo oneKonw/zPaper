@@ -72,7 +72,7 @@ class Sysheader extends Component {
     return (
       <div className={styles.header}>
         <div className={styles.title}>
-          <p className={styles.pTxt}>三维城市辅助决策系统</p>
+          <p className={styles.pTxt}>三维城市展示系统</p>
         </div>
         <Menu
           mode="horizontal"

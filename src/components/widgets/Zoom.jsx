@@ -26,7 +26,7 @@ class Zoom extends React.Component {
     this.props.view.when((view) => {
       this.state.vm.view = view;
       watchUtils.init(view, 'zoom', (val) => {
-        console.log(val);
+        // console.log(val);
         this.setState({
           maxZoomed: val === view.constraints.maxZoom,
           minZoomed: val === view.constraints.minZoom,
@@ -52,7 +52,7 @@ class Zoom extends React.Component {
   }
 
   watchZoom() {
-    console.log(this.props.view);
+    // console.log(this.props.view);
     this.setState({
       zoomVal: this.props.view.zoom,
     });
@@ -68,8 +68,8 @@ class Zoom extends React.Component {
       <div
         style={{
           position: 'absolute',
-          bottom: '75px',
-          right: '10px',
+          bottom: '95px',
+          right: '0px',
           zIndex: 12,
           // width: '36px',
           // height: '80px',

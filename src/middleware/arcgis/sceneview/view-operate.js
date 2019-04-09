@@ -61,7 +61,7 @@ function viewOperate(opts = {}) {
               activeWidget = new DirectLineMeasurement3D({
                 view: ags.view,
               });
-              ags.view.ui.add(activeWidget, 'bottom-right');
+              ags.view.ui.add(activeWidget, 'top-right');
               break;
             }
             case SCENE_MEASURE_AREA: {
@@ -72,7 +72,7 @@ function viewOperate(opts = {}) {
               activeWidget = new AreaMeasurement3D({
                 view: ags.view,
               });
-              ags.view.ui.add(activeWidget, 'bottom-right');
+              ags.view.ui.add(activeWidget, 'top-right');
               break;
             }
             default: {
@@ -85,7 +85,7 @@ function viewOperate(opts = {}) {
       // 环视
       case LOOK_AROUND: {
         // 这只可终结定时器
-        console.log('环视', ags.view.camera);
+        // console.log('环视', ags.view.camera);
         const { payload } = action;
         myLookAround(ags.view, payload);
         // const camera = ags.view.camera.clone();
@@ -104,7 +104,7 @@ function viewOperate(opts = {}) {
         let myArea = null;
         const dragHandler = ags.view.on('drag', (event) => {
           event.stopPropagation();
-          console.log('事件', event);
+          // console.log('事件', event);
           if (event.action !== 'end') {
             // 计算截图四个角的坐标
             const xmin = clamp(Math.min(event.origin.x, event.x), 0, ags.view.width);
@@ -155,15 +155,33 @@ function viewOperate(opts = {}) {
       // 建筑查询
       case SEARCH_BUILD: {
         // const ags = env.getParamAgs();
+        const { InputText } = action.payload;
+        let queryText;
+        switch (InputText) {
+          case "949 NW OVERTON ST": {
+            queryText = '10555';
+            break;
+          }
+          case "1205 NW MARSHALL ST": {
+            queryText = '8352';
+            break;
+          }
+
+          default: {
+            return;
+          }
+        }
+
         const view = ags.view;
         const scene = view.map;
         // console.log(scene.allLayers);
         const sceneLayer = scene.allLayers.items[2];
         // console.log(sceneLayer.getFieldUsageInfo('name'));
-        console.log(sceneLayer);
+        // console.log(sceneLayer);\
+        let highlight = null;
 
         let query = new Query({
-          objectIds: ['10555'],
+          objectIds: [queryText],
           outFields: ["*"]
         });
         view.whenLayerView(sceneLayer).then((sceneLayerView) => {
@@ -171,7 +189,7 @@ function viewOperate(opts = {}) {
           sceneLayerView.queryExtent(query).then((result) => {
             view.goTo(
               {
-                target: result.extent.expand(2),
+                target: result.extent.expand(5),
                 tilt: 60
               },
               {
@@ -182,7 +200,18 @@ function viewOperate(opts = {}) {
           });
 
           sceneLayerView.queryFeatures(query).then((result) => {
-            console.log(result.features[0].attributes);
+            const objectId = result.features[0].attributes.OBJECTID;
+            // if (highlight) {
+            //   console.log(result.features[0].attributes.OBJECTID);
+            //   highlight.remove();
+            // }
+            highlight = sceneLayerView.highlight([objectId]);
+
+            store.dispatch({
+              type: 'agsOperate/setStateHightLight',
+              payload: highlight,
+            });
+
           });
         });
 
@@ -271,6 +300,8 @@ function viewOperate(opts = {}) {
         // console.log(action.payload);
         const view = ags.view;
         const scene = view.map;
+        // console.log(scene.allLayers);
+
         let layerCode;
         let show;
         // 图层数，底图地形图，方案总图不进行对比切换

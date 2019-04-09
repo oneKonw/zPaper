@@ -15,7 +15,7 @@ class ToolBar extends Component {
       flagsScreenShot: false,
     };
 
-    // this.btnAddSgs = this.btnAddSgs.bind(this);
+    this.btnAdd3D = this.btnAdd3D.bind(this);
     this.btnMeasure = this.btnMeasure.bind(this);
     this.btnLookAround = this.btnLookAround.bind(this);
     this.btnAnalysisShadow = this.btnAnalysisShadow.bind(this);
@@ -23,20 +23,19 @@ class ToolBar extends Component {
     this.btnRoam = this.btnRoam.bind(this);
     this.btnSearchBuild = this.btnSearchBuild.bind(this);
     this.btnPjReview = this.btnPjReview.bind(this);
-
+    this.btnBufferAna = this.btnBufferAna.bind(this);
   }
 
 
-  // // 显示磁贴面版
-  // btnAddSgs() {
-  //   this.props.dispatch({
-  //     type: 'agsOperate/changeStateContent',
-  //     payload: {
-  //       flagsContent: !this.props.agsOperate.flagsContent,
-  //       flagToolbar: !this.props.agsOperate.flagToolbar,
-  //     },
-  //   });
-  // }
+  // 3d素描
+  btnAdd3D() {
+    this.props.dispatch({
+      type: 'agsOperate/changeStateAdd3D',
+      payload: {
+        flagAdd3D: !this.props.agsOperate.flagAdd3D,
+      },
+    });
+  }
   // 显示测量面版
   btnMeasure() {
     this.props.dispatch({
@@ -103,6 +102,16 @@ class ToolBar extends Component {
     });
   }
 
+  // 缓冲分析
+  btnBufferAna() {
+    this.props.dispatch({
+      type: 'agsOperate/changeStateBuffer',
+      payload: {
+        flagBuffer: !this.props.agsOperate.flagBuffer,
+      },
+    });
+  }
+
   render() {
     return (
       <div
@@ -131,16 +140,17 @@ class ToolBar extends Component {
             onClick={this.btnRoam}
           >漫游</Button>
           <Button
-            onClick={this.btnAddSgs}
-          >添加建议</Button>
+            onClick={this.btnAdd3D}
+          >3D素描</Button>
           <Button
             onClick={this.btnSearchBuild}
           >建筑查询</Button>
           <Button
             onClick={this.btnPjReview}
-          >
-            方案评审
-          </Button>
+          >方案评审</Button>
+          <Button
+            onClick={this.btnBufferAna}
+          >缓冲分析</Button>
         </ButtinGroup>
         <ScreenShot />
       </div>

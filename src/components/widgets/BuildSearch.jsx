@@ -8,25 +8,40 @@ import env from '../../utils/env';
 class BuildSearch extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      inputValue: undefined,
+    };
     this.btnSerachBuild = this.btnSerachBuild.bind(this);
     this.btnShowModel = this.btnShowModel.bind(this);
+    this.inputChange = this.inputChange.bind(this);
   }
 
   btnSerachBuild() {
+    if (this.props.agsOperate.hightLight) {
+      this.props.agsOperate.hightLight.remove();
+    }
     this.props.dispatch({
       type: 'agsOperate/btnSearchBuild',
       payload: {
-        midText: 'hello',
+        InputText: this.state.inputValue,
       },
     });
   }
   btnShowModel() {
+    if (this.props.agsOperate.hightLight) {
+      this.props.agsOperate.hightLight.remove();
+    }
     this.props.dispatch({
       type: 'agsOperate/changeStateBuildSearch',
       payload: {
         flagBuildSearch: !this.props.agsOperate.flagBuildSearch,
       },
+    });
+  }
+
+  inputChange(event) {
+    this.setState({
+      inputValue: event.currentTarget.value,
     });
   }
 
@@ -45,7 +60,7 @@ class BuildSearch extends Component {
           <span className={styles.spanModalShow} onClick={this.btnShowModel} >X</span>
         </div>
         <div>
-          <Input className={styles.inputSerach} placeholder="输入查询关键字" />
+          <Input onChange={this.inputChange} className={styles.inputSerach} placeholder="输入查询关键字" />
           <Button onClick={this.btnSerachBuild} >查询</Button>
         </div>
       </div >

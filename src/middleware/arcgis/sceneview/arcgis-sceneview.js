@@ -9,8 +9,9 @@ import MapView from 'esri/views/MapView';
 import WebMap from 'esri/WebMap';
 import WebScene from 'esri/WebScene';
 import Sceneview from 'esri/views/SceneView';
-import Home from 'esri/widgets/Home';
 // import EsriMap from 'esri/Map';
+import LayerList from 'esri/widgets/LayerList';
+import Expand from 'esri/widgets/Expand';
 
 // 组件
 import BasemapGallery from 'esri/widgets/BasemapGallery';
@@ -18,6 +19,7 @@ import Zoom from '../../../components/widgets/Zoom';
 import NavigationToggle from '../../../components/widgets/NavigationToggle';
 // import Getpoints from '../../../components/widgets/Getpoints';
 import Compass from '../../../components/widgets/Compass';
+import Home from '../../../components/widgets/Home';
 import { getLayerByItem, myModelRender } from '../../../utils/modelRender';
 
 import {
@@ -79,6 +81,7 @@ function createMap(opts = {}) {
         } else if (viewMode === VIEW_MODE_3D) {
           // 初始化三维场景
           initSceneView();
+          createToolButtons();
 
           // 隐藏方案评审图层
           ags.view.when(() => {
@@ -216,62 +219,77 @@ function initSceneView() {
 
 // 地图工具
 function createToolButtons() {
-  // Home
-  // const homeDiv = domConstruct.create('div');
-  // ags.view.ui.add(homeDiv, {
-  //   position: 'bottom-right',
-  // });
-  // ReactDOM.render(<Home view={ags.view} />, homeDiv);
+  ags.view.when(() => {
+    // // Home
+    const homeDiv = domConstruct.create('div');
+    ags.view.ui.add(homeDiv, {
+      position: 'bottom-right',
+    });
+    ReactDOM.render(<Home view={ags.view} />, homeDiv);
 
-  // Zoom
-  // const zoomDiv = domConstruct.create('div');
-  // ags.view.ui.add(zoomDiv, {
-  //   position: 'bottom-right',
-  // });
-  // ReactDOM.render(<Zoom view={ags.view} />, zoomDiv);
+    // Zoom
+    const zoomDiv = domConstruct.create('div');
+    ags.view.ui.add(zoomDiv, {
+      position: 'bottom-right',
+    });
+    ReactDOM.render(<Zoom view={ags.view} />, zoomDiv);
 
-  // // Compass
-  // const compassDiv = domConstruct.create('div');
-  // ags.view.ui.add(compassDiv, {
-  //   position: 'bottom-right',
-  // });
-  // ReactDOM.render(<Compass view={ags.view} />, compassDiv);
+    // Compass
+    const compassDiv = domConstruct.create('div');
+    ags.view.ui.add(compassDiv, {
+      position: 'bottom-right',
+    });
+    ReactDOM.render(<Compass view={ags.view} />, compassDiv);
 
-  // LayerList
-  // const expandDiv = domConstruct.create('div');
-  // expandDiv.style.position = 'absolute';
-  // expandDiv.style.top = '50px';
-  // expandDiv.style.right = '-8px';
-  // const layerList = new LayerList({
-  //   container: domConstruct.create('div'),
-  //   view: ags.view,
-  // });
-  // ags.view.ui.add(expandDiv, {
-  //   position: 'top-right',
-  //   index: 0,
-  // });
-  // ReactDOM.render(
-  //   <Expand
-  //     view={ags.view}
-  //     content={layerList.domNode}
-  //     expandIconClass="esri-icon-layers"
-  //   />,
-  //   expandDiv,
-  // );
+    // // LayerList
+    // const expandDiv = domConstruct.create('div');
+    // expandDiv.style.position = 'absolute';
+    // expandDiv.style.top = '50px';
+    // expandDiv.style.right = '-8px';
+    // const layerList = new LayerList({
+    //   container: domConstruct.create('div'),
+    //   view: ags.view,
+    // });
+    // ags.view.ui.add(expandDiv, {
+    //   position: 'top-right',
+    //   index: 0,
+    // });
+    // ReactDOM.render(
+    //   <Expand
+    //     view={ags.view}
+    //     content={layerList.domNode}
+    //     expandIconClass="esri-icon-layers"
+    //   />,
+    //   expandDiv,
+    // );
 
-  // BasemapGallery
-  const basemapGalleryDiv = domConstruct.create('div');
-  basemapGalleryDiv.style.position = 'absolute';
-  basemapGalleryDiv.style.bottom = '27px';
-  basemapGalleryDiv.style.right = '10px';
-  const basemapGallery = new BasemapGallery({
-    container: basemapGalleryDiv,
-    view: ags.view,
+    // BasemapGallery
+    const basemapGalleryDiv = domConstruct.create('div');
+    basemapGalleryDiv.style.position = 'absolute';
+    basemapGalleryDiv.style.bottom = '10px';
+    basemapGalleryDiv.style.left = '10px';
+    const basemapGallery = new BasemapGallery({
+      container: basemapGalleryDiv,
+      view: ags.view,
+    });
+    ags.view.ui.add(basemapGallery, {
+      position: 'bottom-left',
+      index: 0,
+    });
+    setTimeout(() => {
+      // console.log(basemapGalleryDiv.childNodes[0].childNodes);
+      basemapGalleryDiv.childNodes[0].childNodes[2].style.display = 'none';
+      basemapGalleryDiv.childNodes[0].childNodes[3].style.display = 'none';
+      basemapGalleryDiv.childNodes[0].childNodes[6].style.display = 'none';
+      basemapGalleryDiv.childNodes[0].childNodes[7].style.display = 'none';
+      basemapGalleryDiv.childNodes[0].childNodes[8].style.display = 'none';
+      basemapGalleryDiv.childNodes[0].childNodes[9].style.display = 'none';
+
+    }, 6000);
+
+    // basemapGallery.domNode.childNodes[0].style.display = 'none';
   });
-  ags.view.ui.add(basemapGallery, {
-    position: 'bottom-right',
-    index: 0,
-  });
+
   // ags.view.when(() => {
   //   setTimeout(() => {
   //     // console.log(basemapGalleryDiv.childNodes[0].childNodes);

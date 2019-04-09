@@ -51,9 +51,9 @@
 .compassBtn {
   display: inline-block;
   cursor: pointer;
-  margin: 6px;
-  width: 36px !important;
-  height: 36px !important;
+  /* margin: 6px; */
+  /* width: 36px !important;
+  height: 36px !important; */
   border-radius: 50%;
   text-align: center;
   position: relative;

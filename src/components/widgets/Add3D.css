@@ -1,0 +1,33 @@
+.modlediv {
+  position: absolute;
+  right: 10px;
+  top: 120px;
+  height: 100px;
+  width: 300px;
+  background-color:white;
+}
+
+.divTitle{
+  background-color: #001529;
+  color: white;
+  height: 40px;
+}
+
+.divTitleFont{
+  line-height: 40px;
+  padding-left: 20px;
+}
+
+.spanModalShow{
+  cursor: pointer;
+  margin-left: 190px;
+}
+
+.btnStart{
+  width: 100px;
+}
+
+.btnTool{
+  margin-top: 14px;
+  margin-left: 12px;
+}

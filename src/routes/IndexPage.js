@@ -10,6 +10,10 @@ import AnalysisShadow from '../components/widgets/AnalysisShadow';
 import ViewpointAdd from '../components/widgets/ViewpointAdd';
 import BuildSearch from '../components/widgets/BuildSearch'; // 建筑查询控件
 import PjReview from '../components/widgets/PjReview'; // 方案评审
+import Home from '../components/widgets/Home';
+import GetPoiont from '../components/widgets/GetPoint';
+import BufferAnalysis from '../components/widgets/BufferAnalysis'; // 缓冲分析
+import Add3D from '../components/widgets/Add3D'; // 添加3D
 
 // import { Avatar, Layout, Row, Col, Menu } from 'antd';
 import env from '../utils/env';
@@ -62,6 +66,10 @@ class IndexPage extends React.Component {
         <ViewpointAdd />
         <BuildSearch />
         <PjReview />
+        {/* <Home /> */}
+        {/* <GetPoiont /> */}
+        <BufferAnalysis />
+        <Add3D />
       </div>
     );
   }
